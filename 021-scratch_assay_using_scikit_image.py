@@ -39,5 +39,6 @@ from scipy.stats import linregress
 slope, intercept, r_value, p_value, std_err = linregress(time_list, area_list)
 print("y = ",slope, "x", " + ", intercept  )
 print("R\N{SUPERSCRIPT TWO} = ", r_value**2)
+
 #print("r-squared: %f" % r_value**2)
 
