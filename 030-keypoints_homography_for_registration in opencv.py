@@ -1,6 +1,4 @@
 # https://www.youtube.com/watch?v=cA8K8dl-E6k
-
-
 # Brute-Force Matching with ORB Descriptors
 
 import numpy as np
