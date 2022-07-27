@@ -15,7 +15,7 @@ import cv2
 import numpy as np
 from matplotlib import pyplot as plt
 
-img = cv2.imread("images/Alloy.jpg", 0)
+img = cv2.imread("D:/DigitalSreeni_python/Python-for-microscopists/Python-for-microscopists/images/Alloy.jpg", 0)
 equ = cv2.equalizeHist(img)
 
 plt.hist(equ.flat, bins=100, range=(0,100))
@@ -46,7 +46,7 @@ cv2.destroyAllWindows()
 import cv2
 import matplotlib.pyplot as plt
 
-img = cv2.imread("images/Alloy.jpg", 0)
+img = cv2.imread("D:/DigitalSreeni_python/Python-for-microscopists/Python-for-microscopists/images/Alloy.jpg", 0)
 
 #Adaptive histogram equalization using CLAHE to stretch the histogram. 
 #Contrast Limited Adaptive Histogram Equalization covered in the previous tutorial. 
@@ -74,7 +74,7 @@ cv2.destroyAllWindows()
 import cv2
 import matplotlib.pyplot as plt
 
-img = cv2.imread("images/Alloy.jpg", 0)
+img = cv2.imread("D:/DigitalSreeni_python/Python-for-microscopists/Python-for-microscopists/images/Alloy.jpg", 0)
 
 clahe = cv2.createCLAHE(clipLimit=2.0, tileGridSize=(8,8))  #Define tile size and clip limit. 
 clahe_img = clahe.apply(img)
@@ -100,7 +100,7 @@ cv2.destroyAllWindows()
 import cv2
 import matplotlib.pyplot as plt
 
-img = cv2.imread("images/Alloy_noisy.jpg", 0)
+img = cv2.imread("D:/DigitalSreeni_python/Python-for-microscopists/Python-for-microscopists/images/Alloy_noisy.jpg", 0)
 
 blur = cv2.GaussianBlur(clahe_img,(5,5),0)
 ret3,th3 = cv2.threshold(blur,0,255,cv2.THRESH_BINARY+cv2.THRESH_OTSU)
