@@ -5,8 +5,8 @@ import numpy as np
 import cv2
 from matplotlib import pyplot as plt
 
-im1 = cv2.imread('D:/DigitalSreeni_python/Python-for-microscopists/images/monkey_distorted.jpg')          # Image that needs to be registered.
-im2 = cv2.imread('D:/DigitalSreeni_python/Python-for-microscopists/images/monkey.jpg') # trainImage
+im1 = cv2.imread('D:/DigitalSreeni_python/Python-for-microscopists/Python-for-microscopists/images/monkey_distorted.jpg')          # Image that needs to be registered.
+im2 = cv2.imread('D:/DigitalSreeni_python/Python-for-microscopists/Python-for-microscopists/images/monkey.jpg') # trainImage
 
 img1 = cv2.cvtColor(im1, cv2.COLOR_BGR2GRAY)
 img2 = cv2.cvtColor(im2, cv2.COLOR_BGR2GRAY)
