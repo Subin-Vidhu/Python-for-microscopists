@@ -10,7 +10,7 @@ from skimage import io, img_as_float
 import numpy as np
 
 
-img = img_as_float(io.imread("images/Alloy_noisy.jpg"))
+img = img_as_float(io.imread("D:/DigitalSreeni_python/Python-for-microscopists/Python-for-microscopists/images/Alloy_noisy.jpg"))
 
 #plt.hist(img.flat, bins=100, range=(0, 1)) 
 
@@ -48,7 +48,7 @@ from skimage.segmentation import random_walker
 # Run random walker algorithm
 # https://scikit-image.org/docs/dev/api/skimage.segmentation.html#skimage.segmentation.random_walker
 labels = random_walker(eq_img, markers, beta=10, mode='bf')
-plt.imsave("images/markers.jpg", markers)
+plt.imsave("D:/DigitalSreeni_python/Python-for-microscopists/Python-for-microscopists/images/markers.jpg", markers)
 segm1 = (labels == 1)
 segm2 = (labels == 2)
 all_segments = np.zeros((eq_img.shape[0], eq_img.shape[1], 3)) #nothing but denoise img size but blank
@@ -69,7 +69,7 @@ all_segments_cleaned[segm1_closed] = (1,0,0)
 all_segments_cleaned[segm2_closed] = (0,1,0)
 
 plt.imshow(all_segments_cleaned) 
-plt.imsave("images/random_walker.jpg", all_segments_cleaned)
+plt.imsave("D:/DigitalSreeni_python/Python-for-microscopists/Python-for-microscopists/images/random_walker.jpg", all_segments_cleaned)
 
 
 
