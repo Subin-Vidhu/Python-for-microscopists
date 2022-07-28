@@ -29,7 +29,7 @@ from PIL import Image
 import numpy as np   #Use numpy to convert images to arrays
 
 # Read image 
-img = Image.open("images/test_image.jpg") #Not a numpy array
+img = Image.open("D:/DS_python/Python-for-microscopists/images/test_image.jpg") #Not a numpy array
 print(type(img))
 
 # Output Images 
@@ -61,7 +61,7 @@ print(type(img1))
 import matplotlib.image as mpimg 
 import matplotlib.pyplot as plt 
 
-img = mpimg.imread("images/test_image.jpg")  #this is a numpy array
+img = mpimg.imread("D:/DS_python/Python-for-microscopists/images/test_image.jpg")  #this is a numpy array
 print(type(img))
 print(img)
 
@@ -86,7 +86,7 @@ import numpy as np
 import matplotlib.pyplot as plt 
 
 
-image = img_as_float(io.imread("images/test_image.jpg"))
+image = img_as_float(io.imread("D:/DS_python/Python-for-microscopists/images/test_image.jpg"))
 
 #image2 = io.imread("images/test_image.jpg").astype(np.float)
 #avoid using astype as it violates assumptions about dtype range.
@@ -125,8 +125,8 @@ Instead of these three flags, you can simply pass integers 1, 0 or -1 respective
 
 import cv2
 
-grey_img = cv2.imread("images/test_image.jpg", 0)
-color_img = cv2.imread("images/test_image.jpg", 1)
+grey_img = cv2.imread("D:/DS_python/Python-for-microscopists/images/test_image.jpg", 0)
+color_img = cv2.imread("D:/DS_python/Python-for-microscopists/images/test_image.jpg", 1)
 
 #images opened using cv2 are numpy arrays
 print(type(grey_img)) 
@@ -172,7 +172,7 @@ plt.imshow(cv2.cvtColor(color_img, cv2.COLOR_BGR2HSV))
 
 from apeer_ometiff_library import io  #Use apeer.com free platform for image processing in the cloud
 
-(pic2, omexml) = io.read_ometiff("images/test_image.ome.tif")  #Unwrap image and embedded xml metadata
+(pic2, omexml) = io.read_ometiff("D:/DS_python/Python-for-microscopists/images/test_image.ome.tif")  #Unwrap image and embedded xml metadata
 print (pic2.shape)   #to verify the shape of the array
 print(pic2)
 
@@ -215,7 +215,7 @@ import cv2
 import glob
 
 #select the path
-path = "images/test_images/aeroplane/*.*"
+path = "D:/DS_python/Python-for-microscopists/images/test_images/aeroplane/*.*"
 for file in glob.glob(path):
     print(file)     #just stop here to see all file names printed
     a= cv2.imread(file)  #now, we can read each file since we have the full path
