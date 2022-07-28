@@ -44,19 +44,19 @@ from matplotlib import pyplot as plt
 from skimage import io
 import numpy as np
 
-img = img_as_float(io.imread("images/denoising/noisy_img.jpg"))
+img = img_as_float(io.imread("D:/DS_python/Python-for-microscopists/images/denoising/noisy_img.jpg"))
 #Need to convert to float as we will be doing math on the array
 
 from scipy import ndimage as nd
 gaussian_img = nd.gaussian_filter(img, sigma=3)
-plt.imsave("images/gaussian.jpg", gaussian_img)
+plt.imsave("D:/DS_python/Python-for-microscopists/images/gaussian.jpg", gaussian_img)
 
 
 median_img = nd.median_filter(img, size=3)
-plt.imsave("images/median.jpg", median_img)
+plt.imsave("D:/DS_python/Python-for-microscopists/images/median.jpg", median_img)
 
 gaussian_img = nd.gaussian_filter(img, sigma=3)
-plt.imsave("images/gaussian.jpg", gaussian_img)
+plt.imsave("D:/DS_python/Python-for-microscopists/images/gaussian.jpg", gaussian_img)
 
 
 ##### NLM#####
@@ -77,5 +77,5 @@ denoise_img_as_8byte = img_as_ubyte(denoise_img)
 
 plt.imshow(denoise_img)
 #plt.imshow(denoise_img_as_8byte, cmap=plt.cm.gray, interpolation='nearest')
-plt.imsave("images/NLM.jpg",denoise_img)
+plt.imsave("D:/DS_python/Python-for-microscopists/images/NLM.jpg",denoise_img)
 
