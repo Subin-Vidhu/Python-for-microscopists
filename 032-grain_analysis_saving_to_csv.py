@@ -18,7 +18,7 @@ from scipy import ndimage
 from skimage import measure, color, io
 
 #STEP1 - Read image and define pixel size
-img = cv2.imread("D:/DigitalSreeni_python/Python-for-microscopists/Python-for-microscopists/images/grains2.jpg", 0)
+img = cv2.imread("D:/DS_python/Python-for-microscopists/images/grains2.jpg", 0)
 
 pixels_to_um = 0.5 # (1 px = 500 nm)
 
