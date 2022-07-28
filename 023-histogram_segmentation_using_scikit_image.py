@@ -6,7 +6,7 @@ from skimage import io
 from matplotlib import pyplot as plt
 import numpy as np
 
-img = io.imread("D:/DigitalSreeni_python/Python-for-microscopists/Python-for-microscopists/images/BSE_Google_noisy.jpg")
+img = io.imread("D:/DS_python/Python-for-microscopists/images/BSE_Google_noisy.jpg")
 #plt.imshow(img, cmap=plt.cm.gray, interpolation='nearest')  
 
 #Let's clean the noise using edge preserving filter.
