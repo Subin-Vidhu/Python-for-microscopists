@@ -8,7 +8,7 @@ import cv2
 import matplotlib.pyplot as plt
 import numpy as np
 
-img = cv2.imread("D:/DigitalSreeni_python/Python-for-microscopists/Python-for-microscopists/images/BSE_Google_noisy.jpg", 0)
+img = cv2.imread("D:/DS_python/Python-for-microscopists/images/BSE_Google_noisy.jpg", 0)
 
 ret,th = cv2.threshold(img,0,255,cv2.THRESH_BINARY+cv2.THRESH_OTSU)
 
