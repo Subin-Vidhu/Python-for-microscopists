@@ -7,7 +7,7 @@
 #to import the package you need to use import cv2
 
 #openCV is a library of programming functions mainly aimed at computer vision.
-#Very good for images and videos, especially real time videos.
+#Very good for D:/DS_python/Python-for-microscopists/images and videos, especially real time videos.
 #It is used extensively for facial recognition, object recognition, motion tracking,
 #optical character recognition, segmentation, and even for artificial neural netwroks. 
 
@@ -16,15 +16,15 @@
 #2. Scaling / resizing
 #3. Denoising / smoothing
 #4. Edge detection
-#5. Enhancing images. using histogram equalization
+#5. Enhancing D:/DS_python/Python-for-microscopists/images. using histogram equalization
 
 ###################################
 #Pixel values, split and merge channels, 
 
 import cv2
 
-grey_img = cv2.imread("images/RGBY.jpg", 0) 
-img = cv2.imread("images/RGBY.jpg", 1)   #Color is BGR not RGB
+grey_img = cv2.imread("D:/DS_python/Python-for-microscopists/images/RGBY.jpg", 0) 
+img = cv2.imread("D:/DS_python/Python-for-microscopists/images/RGBY.jpg", 1)   #Color is BGR not RGB
 
 print(img.shape)     #(586, 415, 3)
 print("Top left", img[0,0])    #Top left pixel
@@ -72,7 +72,7 @@ cv2.destroyAllWindows()
 
 import cv2
 
-img = cv2.imread("images/monkey.jpg", 1)   #Color is BGR not RGB
+img = cv2.imread("D:/DS_python/Python-for-microscopists/images/monkey.jpg", 1)   #Color is BGR not RGB
 
 #use cv2.resize. Can specify size or scaling factor.
 #Inter_cubic or Inter_linear for zooming.
