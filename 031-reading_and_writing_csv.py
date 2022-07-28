@@ -1,6 +1,5 @@
 # https://www.youtube.com/watch?v=Dx8ixwTfWz0
 
-
 #Many ways to read and write CSV files in Python
 
 #READING
