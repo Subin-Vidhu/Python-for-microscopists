@@ -1,6 +1,6 @@
 # https://www.youtube.com/watch?v=jcUx-TQpcM8
 
-#Scratch Assay on time series images
+#Scratch Assay on time series D:/DS_python/Python-for-microscopists/images
 
 import matplotlib.pyplot as plt
 from skimage import io
@@ -15,7 +15,7 @@ import glob
 time = 0
 time_list=[]
 area_list=[]
-path = "images/scratch_assay/*.*"
+path = "D:/DS_python/Python-for-microscopists/images/scratch_assay/*.*"
 for file in glob.glob(path):
     dict={}
     img=io.imread(file)
