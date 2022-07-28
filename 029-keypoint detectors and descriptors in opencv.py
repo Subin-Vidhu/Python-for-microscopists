@@ -47,7 +47,7 @@ import cv2
 import numpy as np
 
 
-img = cv2.imread('D:/DigitalSreeni_python/Python-for-microscopists/Python-for-microscopists/images/grains.jpg')
+img = cv2.imread('D:/DS_python/Python-for-microscopists/images/grains.jpg')
 gray = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
 
 gray = np.float32(gray)  #Harris works on float32 images. 
@@ -71,7 +71,7 @@ cv2.waitKey(0)
 import cv2
 import numpy as np
 
-img = cv2.imread('D:/DigitalSreeni_python/Python-for-microscopists/Python-for-microscopists/images/grains.jpg')
+img = cv2.imread('D:/DS_python/Python-for-microscopists/images/grains.jpg')
 gray = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
 
 #input image, #points, quality level (0-1), min euclidean dist. between detected points
@@ -97,7 +97,7 @@ cv2.waitKey(0)
 
 import cv2
 
-img = cv2.imread('D:/DigitalSreeni_python/Python-for-microscopists/Python-for-microscopists/images/grains.jpg', 0)
+img = cv2.imread('D:/DS_python/Python-for-microscopists/images/grains.jpg', 0)
 
 # Initiate FAST object with default values
 detector = cv2.FastFeatureDetector_create(50)   #Detects 50 points
@@ -125,7 +125,7 @@ cv2.waitKey(0)
 import numpy as np
 import cv2
 
-img = cv2.imread('D:/DigitalSreeni_python/Python-for-microscopists/Python-for-microscopists/images/grains.jpg', 0)
+img = cv2.imread('D:/DS_python/Python-for-microscopists/images/grains.jpg', 0)
 
 orb = cv2.ORB_create(100)
 
