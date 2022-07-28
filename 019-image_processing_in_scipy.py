@@ -8,17 +8,17 @@ image processing. Not designed for image processing but has a few tools
 
 """
 
-#You can use imread from scipy to read images
+#You can use imread from scipy to read D:/DS_python/Python-for-microscopists/images
 
 from scipy import misc
-img = misc.imread("images/monkey.jpg")
+img = misc.imread("/monkey.jpg")
 print(type(img))   #numpy array
 
 #since it gives a message about imread being depreciated I will use
 #skimage which also gives a numpy array. 
 
 from skimage import io
-img = io.imread("images/monkey.jpg")
+img = io.imread("D:/DS_python/Python-for-microscopists/images/monkey.jpg")
 print(type(img))  #numpy array
 
 from skimage import io, img_as_ubyte
@@ -26,7 +26,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 from scipy import ndimage
 
-img = img_as_ubyte(io.imread("images/monkey.jpg", as_gray=True))
+img = img_as_ubyte(io.imread("D:/DS_python/Python-for-microscopists/images/monkey.jpg", as_gray=True))
 #img_as_ubyte converts image to 8 bit unsigned int.
 
 
@@ -79,9 +79,9 @@ import matplotlib.pyplot as plt
 import numpy as np
 from scipy import ndimage
 
-img = img_as_ubyte(io.imread("images/nucleiTubolin_small_noisy.jpg", as_gray=True))
-img1 = img_as_ubyte(io.imread("images/test_image.jpg", as_gray=True))
-img2 = img_as_ubyte(io.imread("images/test_images/aeroplane/1.jpg", as_gray=False))
+img = img_as_ubyte(io.imread("D:/DS_python/Python-for-microscopists/images/nucleiTubolin_small_noisy.jpg", as_gray=True))
+img1 = img_as_ubyte(io.imread("D:/DS_python/Python-for-microscopists/images/test_image.jpg", as_gray=True))
+img2 = img_as_ubyte(io.imread("D:/DS_python/Python-for-microscopists/images/test_D:/DS_python/Python-for-microscopists/images/aeroplane/1.jpg", as_gray=False))
 
 uniform_filtered_img = ndimage.uniform_filter(img, size=9)
 #plt.imshow(uniform_filtered_img)
