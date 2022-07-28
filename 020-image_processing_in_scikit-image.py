@@ -15,7 +15,7 @@ import matplotlib.pyplot as plt
 from skimage import io, color
 from skimage.transform import rescale, resize, downscale_local_mean
 
-img = io.imread("images/test_image.jpg", as_gray=True)
+img = io.imread("D:/DS_python/Python-for-microscopists/images/test_image.jpg", as_gray=True)
 
 #Rescale, resize image by a given factor. While rescaling image
 #gaussian smoothing can performed to avoid anti aliasing artifacts.
@@ -42,7 +42,7 @@ import matplotlib.pyplot as plt
 from skimage import io
 from skimage.filters import roberts, sobel, scharr, prewitt
 
-img = io.imread("images/test_image_cropped.jpg", as_gray=True)  #Convert to grey scale
+img = io.imread("D:/DS_python/Python-for-microscopists/images/test_image_cropped.jpg", as_gray=True)  #Convert to grey scale
 print(img.shape)
 #plt.imshow(img, cmap=plt.cm.gray, interpolation='nearest')
 
@@ -90,7 +90,7 @@ plt.imshow(edge_canny)
 import matplotlib.pyplot as plt
 from skimage import io, color, restoration, img_as_float
 
-img = img_as_float(io.imread("images/BSE_Google_blurred.jpg"))
+img = img_as_float(io.imread("D:/DS_python/Python-for-microscopists/images/BSE_Google_blurred.jpg"))
 print(img.shape)
 
 #PSF
@@ -115,7 +115,7 @@ print(psf)
 
 
 deconvolved, _ = restoration.unsupervised_wiener(img, psf)
-plt.imsave("images/deconvolved.jpg", deconvolved, cmap='gray')
+plt.imsave("D:/DS_python/Python-for-microscopists/images/deconvolved.jpg", deconvolved, cmap='gray')
 
 #########################################
 #Let's find a way to calculate the area of scratch in would healing assay
@@ -126,7 +126,7 @@ plt.imsave("images/deconvolved.jpg", deconvolved, cmap='gray')
 import matplotlib.pyplot as plt
 from skimage import io, color, restoration, img_as_float
 
-img = io.imread("images/scratch.jpg")
+img = io.imread("D:/DS_python/Python-for-microscopists/images/scratch.jpg")
 print(img.shape)
 
 #Checkout this page for entropy and other examples
@@ -163,7 +163,7 @@ from skimage import io, color, restoration, img_as_float
 from skimage.feature import hog
 from skimage import data, exposure
 
-img = io.imread("images/Neuron.jpg", as_gray=False)
+img = io.imread("D:/DS_python/Python-for-microscopists/images/Neuron.jpg", as_gray=False)
 print(img.shape)
 
 fd, hog_image = hog(img, orientations=12, pixels_per_cell=(8, 8), cells_per_block=(2, 2), 
