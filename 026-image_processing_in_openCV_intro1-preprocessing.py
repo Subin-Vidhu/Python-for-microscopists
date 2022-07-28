@@ -8,7 +8,7 @@
 import cv2
 import numpy as np
 from matplotlib import pyplot as plt
-img = cv2.imread('D:/DigitalSreeni_python/Python-for-microscopists/Python-for-microscopists/images/BSE_Google_noisy.jpg', 1)
+img = cv2.imread('D:/DS_python/Python-for-microscopists/images/BSE_Google_noisy.jpg', 1)
 kernel = np.ones((5,5),np.float32)/25
 filt_2D = cv2.filter2D(img,-1,kernel)    #Convolution using the kernel we provide
 blur = cv2.blur(img,(5,5))   #Convolution with a normalized filter. Same as above for this example.
@@ -33,7 +33,7 @@ cv2.destroyAllWindows()
 import cv2
 import numpy as np
 
-img = cv2.imread("D:/DigitalSreeni_python/Python-for-microscopists/Python-for-microscopists/images/Neuron.jpg", 0)
+img = cv2.imread("D:/DS_python/Python-for-microscopists/images/Neuron.jpg", 0)
 edges = cv2.Canny(img,100,200)   #Image, min and max values
 
 cv2.imshow("Original Image", img)
