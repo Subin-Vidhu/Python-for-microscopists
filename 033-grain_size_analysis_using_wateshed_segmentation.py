@@ -15,7 +15,7 @@ from matplotlib import pyplot as plt
 from scipy import ndimage
 from skimage import measure, color, io
 
-img1 = cv2.imread("images/grains2.jpg")
+img1 = cv2.imread("D:/DS_python/Python-for-microscopists/images/grains2.jpg")
 img = cv2.cvtColor(img1,cv2.COLOR_BGR2GRAY)
 
 
