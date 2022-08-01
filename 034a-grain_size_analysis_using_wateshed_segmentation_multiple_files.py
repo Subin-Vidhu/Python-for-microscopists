@@ -32,7 +32,7 @@ propList = ['Area',
                 'MinIntensity',
                 'MeanIntensity',
                 'MaxIntensity']  
-output_file = open('images/grains/grain_measurements.csv', 'w')
+output_file = open('D:/DS_python/Python-for-microscopists/images/grains/grain_measurements.csv', 'w')
 output_file.write('FileName' + "," + 'Grain #'+ "," + "," + ",".join(propList) + '\n') 
 #join strings in array by commas. First column file name and 2nd column cell number 
 #then join all names in prop list with a comma before their name. The go to next line.
@@ -40,7 +40,7 @@ output_file.write('FileName' + "," + 'Grain #'+ "," + "," + ",".join(propList) +
 #Other rows will be filled by data generated later. 
 
 #select the path
-path = "images/grains/*.jpg"
+path = "D:/DS_python/Python-for-microscopists/images/grains/*.jpg"
 for file in glob.glob(path):
     print(file)     #just stop here to see all file names printed
     img1= cv2.imread(file)  #now, we can read each file since we have the full path
