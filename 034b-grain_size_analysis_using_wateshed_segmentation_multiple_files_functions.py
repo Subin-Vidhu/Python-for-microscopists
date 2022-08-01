@@ -114,13 +114,13 @@ propList = ['Area',
             'MeanIntensity',
             'MaxIntensity']    
     
-output_file = open('images/grains/image_measurements2.csv', 'w')
+output_file = open('D:/DS_python/Python-for-microscopists/images/grains/image_measurements2.csv', 'w')
 output_file.write('FileName' + "," + 'Grain #'+ "," + "," + ",".join(propList) + '\n') 
 
 
 import glob
 
-path = "images/grains/*.jpg"
+path = "D:/DS_python/Python-for-microscopists/images/grains/*.jpg"
 for file in glob.glob(path):
     print(file)     #just stop here to see all file names printed
     img1= cv2.imread(file)
