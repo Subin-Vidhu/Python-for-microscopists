@@ -16,7 +16,7 @@ from matplotlib import pyplot as plt
 from scipy import ndimage
 from skimage import measure, color, io
 
-img = cv2.imread("images/Osteosarcoma_01.tif")
+img = cv2.imread("D:/DS_python/Python-for-microscopists/images/Osteosarcoma_01.tif")
 #Extract only blue channel as DAPI / nuclear (blue) staining is the best
 #channel to perform cell count.
 cells=img[:,:,0]  #Blue channel. Image equivalent to grey image.
