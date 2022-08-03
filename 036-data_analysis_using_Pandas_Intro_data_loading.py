@@ -14,7 +14,7 @@ PART 1: LOADING, VIEWING AND  UNDERSTANGING DATA
 #Here, just 3 lines to get our plot. 
 import pandas as pd
 
-df = pd.read_csv('images/grains/grain_measurements.csv')
+df = pd.read_csv('D:/DS_python/Python-for-microscopists/images/grains/grain_measurements_updated.csv')
 
 df['Area'].plot(kind='hist', title='Area', bins=50)
 
