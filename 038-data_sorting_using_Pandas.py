@@ -1,10 +1,5 @@
 # https://www.youtube.com/watch?v=uBa7xSLy8V0
 
-
-"""
-@author: Sreenivas Bhattiprolu
-"""
-
 ####################################
 
 #Sorting Data
