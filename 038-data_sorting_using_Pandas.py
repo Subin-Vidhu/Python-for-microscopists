@@ -8,7 +8,7 @@
 #Sorting data
 #We can sort rows using any of the columns. 
 import pandas as pd
-df = pd.read_csv('manual_vs_auto.csv')
+df = pd.read_csv('file:///D:/DS_python/Python-for-microscopists/other_files/manual_vs_auto.csv')
 print(df.sort_values('Manual', ascending=True))  #Small to large value
 #Let us assign this to a diferent variable
 df2=df.sort_values('Manual', ascending=True)
@@ -48,7 +48,7 @@ print(df[(df['Manual'] > 100.) & (df['Auto_th_2'] < 100.)])
 
 
 import pandas as pd
-df = pd.read_csv('manual_vs_auto.csv')
+df = pd.read_csv('file:///D:/DS_python/Python-for-microscopists/other_files/manual_vs_auto.csv')
 for index, row in df.iterrows():
     average_auto = (row['Auto_th_2'] + row['Auto_th_3'] + row['Auto_th_4'])/3
     print(round(average_auto), row['Manual'])  #ROunding to INT for easy comparison
