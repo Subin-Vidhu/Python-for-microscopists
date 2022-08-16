@@ -1,8 +1,3 @@
-# https://www.youtube.com/watch?v=w1Tw7lj33yU
-
-
-
-
 #  PART 2: SELECTING AND MANIPULATING DATA
 
 
