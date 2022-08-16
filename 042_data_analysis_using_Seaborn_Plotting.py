@@ -1,5 +1,3 @@
-
-
 # https://www.youtube.com/watch?v=ze7HGAf729k
 
 ####################################
