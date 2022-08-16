@@ -12,7 +12,7 @@
 
 
 import pandas as pd
-df = pd.read_csv('manual_vs_auto.csv')
+df = pd.read_csv('D:/DS_python/Python-for-microscopists/other_files/manual_vs_auto.csv')
 
 import seaborn as sns
 
@@ -29,7 +29,7 @@ sns.distplot(df['Manual'])   #The overlay over histogram is KDE plot (Kernel den
 #KDE is a way to estimate the probability density function of a continuous random variable.
 
 import pandas as pd
-df = pd.read_csv('manual_vs_auto.csv')
+df = pd.read_csv('D:/DS_python/Python-for-microscopists/other_files/manual_vs_auto.csv')
 df['Manual'].fillna(100, inplace=True)
 
 import seaborn as sns
@@ -44,7 +44,7 @@ sns.kdeplot(df['Auto_th_4'], shade=True)
 
 #Basic line plot
 import pandas as pd
-df = pd.read_csv('manual_vs_auto.csv')
+df = pd.read_csv('D:/DS_python/Python-for-microscopists/other_files/manual_vs_auto.csv')
 df['Manual'].fillna(100, inplace=True)
 
 import seaborn as sns
@@ -56,7 +56,7 @@ sns.lineplot(x='Image', y='Manual', data=df, hue='Unnamed: 0')   #Simple line pl
 ##############################            
 #Scatter plots
 import pandas as pd
-df = pd.read_csv('manual_vs_auto.csv')
+df = pd.read_csv('D:/DS_python/Python-for-microscopists/other_files/manual_vs_auto.csv')
 df['Manual'].fillna(100, inplace=True)
 import seaborn as sns
 
@@ -72,7 +72,7 @@ sns.jointplot(x="Manual", y="Auto_th_2", data=df, kind="kde")
 import pandas as pd
 import seaborn as sns
 
-df = pd.read_csv('manual_vs_auto.csv')
+df = pd.read_csv('D:/DS_python/Python-for-microscopists/other_files/manual_vs_auto.csv')
 df['Manual'].fillna(100, inplace=True)
 print(df.columns)
 
@@ -86,7 +86,7 @@ sns.pairplot(df, x_vars=["Auto_th_2", "Auto_th_3", "Auto_th_4"], y_vars="Manual"
 #Scatterplot with linear regression
 
 import pandas as pd
-df = pd.read_csv('manual_vs_auto.csv')
+df = pd.read_csv('D:/DS_python/Python-for-microscopists/other_files/manual_vs_auto.csv')
 df['Manual'].fillna(100, inplace=True)
 #Change Unnamed: 0 name to Image_set
 df = df.rename(columns = {'Unnamed: 0':'Image_set'})
@@ -107,7 +107,7 @@ print(slope, intercept)
 #Swarm plots
 #Let's use manual_vs_auto2 file that we generated earlier 
 import pandas as pd
-df = pd.read_csv('manual_vs_auto2.csv')
+df = pd.read_csv('D:/DS_python/Python-for-microscopists/other_files/manual_vs_auto.csv')
 df['Manual'].fillna(100, inplace=True)
 print(df.head())
 
@@ -129,7 +129,7 @@ specifying the labels and the Heatmap colour range.
 
 
 import pandas as pd
-df = pd.read_csv('manual_vs_auto.csv')
+df = pd.read_csv('D:/DS_python/Python-for-microscopists/other_files/manual_vs_auto.csv')
 print(df.dtypes)
 df['Manual'].fillna(100, inplace=True)
 #Change Unnamed: 0 name to Image_set
