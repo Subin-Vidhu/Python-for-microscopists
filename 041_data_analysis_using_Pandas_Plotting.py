@@ -1,7 +1,5 @@
 # https://www.youtube.com/watch?v=Kl_ARrLKyec
 
-
-
 ##########################################
 
 #PLOTTING
