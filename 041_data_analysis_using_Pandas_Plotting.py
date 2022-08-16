@@ -7,7 +7,7 @@
 
 
 import pandas as pd
-df = pd.read_csv('manual_vs_auto.csv')
+df = pd.read_csv('D:/DS_python/Python-for-microscopists/other_files/manual_vs_auto.csv')
 
 #Pandas works with Matplotlib in the background. SO we don't have to import Pyplot for basic plotting.
 
@@ -19,7 +19,7 @@ df['Manual'].plot(kind='hist', title='Manual Count', bins=30, figsize=(12,10)) #
 #and work with that dataframe. 
 #Let us plot only Set 1.
 import pandas as pd
-df = pd.read_csv('manual_vs_auto.csv')
+df = pd.read_csv('D:/DS_python/Python-for-microscopists/other_files/manual_vs_auto.csv')
 #Change Unnamed: 0 name to Image_set
 df = df.rename(columns = {'Unnamed: 0':'Image_set'})
 print(df.columns) 
@@ -28,7 +28,7 @@ set1_df['Manual'].plot()
 
 #Let's go back to all sets now.
 import pandas as pd
-df = pd.read_csv('manual_vs_auto.csv')
+df = pd.read_csv('D:/DS_python/Python-for-microscopists/other_files/manual_vs_auto.csv')
 #Change Unnamed: 0 name to Image_set
 df = df.rename(columns = {'Unnamed: 0':'Image_set'})
 #df['Manual'].plot()
@@ -41,7 +41,7 @@ df['Manual'].rolling(3).mean().plot()  #MUch nicer plot.
 #We can also graphically represent the statistics. 
 #do you remember df['Manual'].describe()
 import pandas as pd
-df = pd.read_csv('manual_vs_auto.csv')
+df = pd.read_csv('D:/DS_python/Python-for-microscopists/other_files/manual_vs_auto.csv')
 #Change Unnamed: 0 name to Image_set
 df = df.rename(columns = {'Unnamed: 0':'Image_set'})
 
@@ -60,7 +60,7 @@ df.plot(kind='scatter', x='Manual', y='Auto_th_2', title='Manual vs Auto2')
 
 
 import pandas as pd
-df = pd.read_csv('manual_vs_auto.csv')
+df = pd.read_csv('D:/DS_python/Python-for-microscopists/other_files/manual_vs_auto.csv')
 #Change Unnamed: 0 name to Image_set
 df = df.rename(columns = {'Unnamed: 0':'Image_set'})
 
