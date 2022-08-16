@@ -1,4 +1,4 @@
-#  PART 2: SELECTING AND MANIPULATING DATA
+#PART 2: SELECTING AND MANIPULATING DATA
 
 
 #VIDEO: Deleting Rows and COlumns
@@ -7,7 +7,7 @@
 #Deleting columns
 #Delete Manual2 column
 import pandas as pd
-df = pd.read_csv('manual_vs_auto.csv')
+df = pd.read_csv('file:///D:/DS_python/Python-for-microscopists/other_files/manual_vs_auto.csv')
 
 df1 = df.drop("Manual2", axis=1) #Creating a new dataframe df1. 
 # Axis=1 means referring to column. 
@@ -21,7 +21,7 @@ print(df2.columns)
 #Inserting new columns, 
 
 import pandas as pd
-df = pd.read_csv('manual_vs_auto.csv')
+df = pd.read_csv('file:///D:/DS_python/Python-for-microscopists/other_files/manual_vs_auto.csv')
 #as easy as just typing...
 df['Date'] = "2019-05-06" 
 
@@ -41,7 +41,7 @@ df.to_csv('maual_vs_auto_updated.csv') #Open csv file to see
 ##################
 #Deleting rows
 import pandas as pd
-df = pd.read_csv('manual_vs_auto.csv')
+df = pd.read_csv('file:///D:/DS_python/Python-for-microscopists/other_files/manual_vs_auto.csv')
 
 #Delete a specific row
 df1 = df.drop(df.index[1])
@@ -53,5 +53,6 @@ print(df.head())
 #Drop all rows if the row value is equal to some string or number
 df1 = df[df["Unnamed: 0"] != "Set1"]
 print(df1.head())
+print(df1.tail())
 
 
