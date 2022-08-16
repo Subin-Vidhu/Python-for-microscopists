@@ -8,7 +8,7 @@
 #We can then perform an operation such as mean, min, max, std on the individual groups    
 
 import pandas as pd
-df = pd.read_csv('manual_vs_auto.csv')
+df = pd.read_csv('file:///D:/DS_python/Python-for-microscopists/other_files/manual_vs_auto.csv')
 #Let us rename Unnamed column and drop Manual 2 column
 df = df.rename(columns = {'Unnamed: 0':'Image_set'})
 df = df.drop("Manual2", axis=1)
@@ -26,7 +26,7 @@ print(df.corr())  #Correlation between all columns
 
 #To check correlation for specific columns
 import pandas as pd
-df = pd.read_csv('manual_vs_auto.csv')
+df = pd.read_csv('file:///D:/DS_python/Python-for-microscopists/other_files/manual_vs_auto.csv')
 print(df['Manual'].corr(df['Auto_th_2'])) 
 
 """
