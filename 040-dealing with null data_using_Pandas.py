@@ -1,6 +1,4 @@
-#!/usr/bin/env python
-__author__ = "Sreenivas Bhattiprolu"
-__license__ = "Feel free to copy, I appreciate if you acknowledge Python for Microscopists"
+
 
 # https://www.youtube.com/watch?v=0_mGopGP2dQ
 
@@ -11,7 +9,7 @@ __license__ = "Feel free to copy, I appreciate if you acknowledge Python for Mic
     #Recognizing blank data, that is automatically filled as Nan by Pandas
 
 import pandas as pd
-df = pd.read_csv('manual_vs_auto.csv')
+df = pd.read_csv('file:///D:/DS_python/Python-for-microscopists/other_files/manual_vs_auto.csv')
 
 print(df.isnull())#Shows whether a cell is null or not, not that helpful.
 #Drop the entire column, if it makes sense
@@ -40,7 +38,7 @@ print(df.head(25))   #Notice last entry in MinIntensity filled with 159.8
 import pandas as pd
 import numpy as np
 
-df = pd.read_csv('manual_vs_auto.csv')
+df = pd.read_csv('file:///D:/DS_python/Python-for-microscopists/other_files/manual_vs_auto.csv')
 
 df['Manual'] = df.apply(lambda row: (round((row['Auto_th_2']+row['Auto_th_3']+row['Auto_th_3'])/3)) if np.isnan(row['Manual']) else row['Manual'], axis=1)
 print(df.head(25))
