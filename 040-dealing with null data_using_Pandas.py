@@ -1,8 +1,5 @@
 # https://www.youtube.com/watch?v=0_mGopGP2dQ
 
-
-
-
 #Dealing with null data
     #Recognizing blank data, that is automatically filled as Nan by Pandas
 
