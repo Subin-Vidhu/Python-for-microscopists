@@ -6,7 +6,7 @@ import numpy as np
 from sklearn import linear_model
 import matplotlib.pyplot as plt
 
-df = pd.read_csv('other_files/cells.csv')
+df = pd.read_csv('D:/DS_python/Python-for-microscopists/other_files/cells.csv')
 print(df)
 
 #plt.xlabel('time')
