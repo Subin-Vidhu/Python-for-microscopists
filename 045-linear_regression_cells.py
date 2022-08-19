@@ -34,8 +34,8 @@ print(x_df.dtypes)  #Prints as object when you drop cells or use double brackets
 #Prints as float64 if you do only single brackets, which is not the right type for our model. 
 y_df = df.cells
 
-#print(x_df)
-#print(y_df)
+print(x_df)
+print(y_df)
 
 #TO create a model instance 
 
@@ -59,7 +59,7 @@ print("From maual calculation, cells = ", (m*2.3 + b))
 
 
 #Now predict cells for a list of times by reading time values from a csv file
-cells_predict_df = pd.read_csv("other_files/cells_predict.csv")
+cells_predict_df = pd.read_csv("D:/DS_python/Python-for-microscopists/other_files/cells_predict.csv")
 print(cells_predict_df.head())
 
 predicted_cells = reg.predict(cells_predict_df)
@@ -69,7 +69,7 @@ print(predicted_cells)
 cells_predict_df['cells']=predicted_cells
 print(cells_predict_df)
 
-cells_predict_df.to_csv("other_files/predicted_cells.csv")
+cells_predict_df.to_csv("D:/DS_python/Python-for-microscopists/other_files/predicted_cells.csv")
 
 
 ##############################
@@ -79,7 +79,7 @@ cells_predict_df.to_csv("other_files/predicted_cells.csv")
 #Using Seaborn for plotting and linregress from scipy stats library
 
 import pandas as pd
-df = pd.read_csv('other_files/cells.csv')
+df = pd.read_csv('D:/DS_python/Python-for-microscopists/other_files/cells.csv')
 
 import seaborn as sns
 sns.set(style='darkgrid')
