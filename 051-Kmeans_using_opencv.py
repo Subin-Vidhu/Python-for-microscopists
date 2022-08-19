@@ -1,6 +1,5 @@
 # https://www.youtube.com/watch?v=6CqRnx6Ic48
 
-
 import numpy as np
 import cv2
 
