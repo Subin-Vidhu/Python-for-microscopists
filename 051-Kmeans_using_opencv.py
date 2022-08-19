@@ -48,7 +48,7 @@ center = np.uint8(center)
 #Next, we have to access the labels to regenerate the clustered image
 res = center[label.flatten()]
 res2 = res.reshape((img.shape)) #Reshape labels to the size of original image
-cv2.imwrite("images/segmented.jpg", res2)
+cv2.imwrite("D:/DS_python/Python-for-microscopists/images/segmented.jpg", res2)
 
 
 """
