@@ -3,7 +3,7 @@
 import numpy as np
 import cv2
 
-img = cv2.imread("images/BSE_Image.jpg")
+img = cv2.imread("D:/DS_python/Python-for-microscopists/images/BSE_Image.jpg")
 
 
 # Convert MxNx3 image into Kx3 where K=MxN
