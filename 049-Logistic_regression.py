@@ -1,10 +1,5 @@
 # https://www.youtube.com/watch?v=xl8ljyE66jM
 
-
-"""
-@author: Sreenivas Bhattiprolu
-"""
-
 import pandas as pd
 from matplotlib import pyplot as plt
 
