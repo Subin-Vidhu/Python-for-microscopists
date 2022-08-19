@@ -5,7 +5,7 @@ from matplotlib import pyplot as plt
 
 #STEP 1: DATA READING AND UNDERSTANDING
 
-df = pd.read_csv("other_files/images_analyzed_productivity1.csv")
+df = pd.read_csv("D:/DS_python/Python-for-microscopists/other_files/images_analyzed_productivity1.csv")
 print(df.head())
 
 #plt.scatter(df.Age, df.Productivity, marker='+', color='red')
@@ -27,7 +27,7 @@ plt.pie(sizes, shadow=True, autopct='%1.1f%%')
 
 df.drop(['Images_Analyzed'], axis=1, inplace=True)
 df.drop(['User'], axis=1, inplace=True)
-
+df.head()
 
 #STEP 3: Handle missing values, if needed
 #df = df.dropna()  #Drops all rows with at least one null value. 
@@ -56,7 +56,7 @@ X = df.drop(labels = ["Productivity"], axis=1)
 
 #STEP 6: SPLIT THE DATA into TRAIN AND TEST data.
 from sklearn.model_selection import train_test_split
-X_train, X_test, y_train, y_test = train_test_split(X, Y, test_size=0.4, random_state=20)
+X_train, X_test, y_train, y_test = train_test_split(X, Y, test_size=0.4, random_state=42)
 #random_state can be any integer and it is used as a seed to randomly split dataset.
 #By doing this we work with same test dataset evry time, if this is important.
 #random_state=None splits dataset randomly every time
