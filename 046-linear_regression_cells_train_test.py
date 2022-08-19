@@ -13,7 +13,7 @@ import numpy as np
 from sklearn import linear_model
 import matplotlib.pyplot as plt
 
-df = pd.read_csv('other_files/cells.csv')
+df = pd.read_csv('D:/DS_python/Python-for-microscopists/other_files/cells.csv')
 print(df)
 
 #plt.xlabel('time')
@@ -45,7 +45,7 @@ y_df = df.cells
 #print(y_df)
 
 from sklearn.model_selection import train_test_split
-X_train, X_test, y_train, y_test = train_test_split(x_df, y_df, test_size=0.4, random_state=10)
+X_train, X_test, y_train, y_test = train_test_split(x_df, y_df, test_size=0.4, random_state=42)
 #random_state can be any integer and it is used as a seed to randomly split dataset.
 #By doing this we work with same test dataset evry time, if this is important.
 #random_state=None splits dataset randomly every time
