@@ -3,7 +3,7 @@
 import pandas as pd
 from matplotlib import pyplot as plt
 
-df=pd.read_excel('other_files/K_Means.xlsx')
+df=pd.read_excel('D:/DS_python/Python-for-microscopists/other_files/K_Means.xlsx')
 print(df.head())
 
 import seaborn as sns
