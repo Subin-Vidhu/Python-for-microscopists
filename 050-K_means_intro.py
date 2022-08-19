@@ -1,9 +1,7 @@
 # https://www.youtube.com/watch?v=d7NJGLevmwA
 
 
-"""
-@author: Sreenivas Bhattiprolu
-"""
+
 
 import pandas as pd
 from matplotlib import pyplot as plt
