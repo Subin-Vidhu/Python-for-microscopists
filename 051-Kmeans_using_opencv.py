@@ -2,6 +2,7 @@
 
 import numpy as np
 import cv2
+import matplotlib.pyplot as plt
 
 img = cv2.imread("D:/DS_python/Python-for-microscopists/images/BSE_Image.jpg")
 
@@ -51,13 +52,12 @@ res2 = res.reshape((img.shape)) #Reshape labels to the size of original image
 cv2.imwrite("D:/DS_python/Python-for-microscopists/images/segmented.jpg", res2)
 
 
-"""
+
 #Now let us visualize the output result
 figure_size = 15
 plt.figure(figsize=(figure_size,figure_size))
-plt.subplot(1,2,1),plt.imshow(img2)
+plt.subplot(1,2,1),plt.imshow(img)
 plt.title('Original Image'), plt.xticks([]), plt.yticks([])
 plt.subplot(1,2,2),plt.imshow(res2)
 plt.title('Segmented Image when K = %i' % k), plt.xticks([]), plt.yticks([])
 plt.show()
-"""
