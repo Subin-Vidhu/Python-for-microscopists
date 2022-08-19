@@ -19,7 +19,7 @@ We need to predict the number of images analyzed using other variables.
 
 import pandas as pd
 
-df = pd.read_excel('other_files/images_analyzed.xlsx')
+df = pd.read_excel('D:/DS_python/Python-for-microscopists/other_files/images_analyzed.xlsx')
 print(df.head())
 
 #A few plots in Seaborn to understand the data
