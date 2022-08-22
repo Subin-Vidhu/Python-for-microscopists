@@ -17,7 +17,7 @@ from skimage import data, io, img_as_ubyte
 from skimage.filters import threshold_multiotsu
 
 # Read an image
-image = io.imread("images/BSE.jpg")
+image = io.imread("D:/DS_python/Python-for-microscopists/images/BSE_Image.jpg")
 
 
 # Apply multi-Otsu threshold 
@@ -28,7 +28,7 @@ thresholds = threshold_multiotsu(image, classes=5)
 regions = np.digitize(image, bins=thresholds)
 output = img_as_ubyte(regions)  #Convert 64 bit integer values to uint8
 
-plt.imsave("images/Otsu_Segmented.jpg", output)
+plt.imsave("D:/DS_python/Python-for-microscopists/images/Otsu_Segmented.jpg", output)
 
 
 #Let us look at the input image, thresholds on thehistogram and final segmented image
