@@ -17,7 +17,7 @@ from skimage import data, io, img_as_ubyte
 from skimage.filters import threshold_multiotsu
 
 # Read an image
-image = io.imread("D:/DS_python/Python-for-microscopists/images/BSE_Image.jpg")
+image = io.imread("D:/DS_python/Python-for-microscopists/images/BSE_Google.jpg")
 
 
 # Apply multi-Otsu threshold 
