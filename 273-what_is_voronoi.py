@@ -55,7 +55,7 @@ plt.show()
 
 from skimage import io, filters
 
-img = io.imread('temp.jpg')
+img = io.imread('D:/DS_python/Python-for-microscopists/images/denoising/gaussian.jpg')
 
 plt.imshow(img, cmap='gray')
 plt.axis('off')
