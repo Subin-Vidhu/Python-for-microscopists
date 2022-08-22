@@ -1,5 +1,6 @@
 # https://youtu.be/YdhhiXDQDl4
 
+
 """
 Multi-Otsu calculates several thresholds, determined by the number of desired classes.
 
