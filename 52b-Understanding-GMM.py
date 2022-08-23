@@ -49,7 +49,6 @@ plt.grid()
 plt.show()
 
 ###########################
-
 #2D example
 # Parts of the code from
 # https://jakevdp.github.io/PythonDataScienceHandbook/05.12-gaussian-mixtures.html
