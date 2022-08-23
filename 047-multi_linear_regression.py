@@ -26,7 +26,6 @@ print(df.head())
 
 import seaborn as sns
 
-
 sns.lmplot(x='Time', y='Images_Analyzed', data=df, hue='Age')  #Scatterplot with linear regression fit and 95% confidence interval
 sns.lmplot(x='Coffee', y='Images_Analyzed', data=df, hue='Age', order=2)
 #Looks like too much coffee is not good... negative effects
