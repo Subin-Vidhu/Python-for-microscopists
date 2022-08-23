@@ -40,7 +40,6 @@ I hope this explanation helps better understand the video content.
 import numpy as np
 import cv2
 
-
 #Use plant cells to demo the GMM on 2 components
 #Use BSE_Image to demo it on 4 components
 #USe alloy.jpg to demonstrate bic and how 2 is optimal for alloy
