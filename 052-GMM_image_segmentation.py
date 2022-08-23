@@ -45,7 +45,7 @@ import cv2
 #Use BSE_Image to demo it on 4 components
 #USe alloy.jpg to demonstrate bic and how 2 is optimal for alloy
 
-img = cv2.imread("images/BSE_Image.jpg")
+img = cv2.imread("D:/DS_python/Python-for-microscopists/images/BSE_Image.jpg")
 
 # Convert MxNx3 image into Kx3 where K=MxN
 img2 = img.reshape((-1,3))  #-1 reshape means, in this case MxN
