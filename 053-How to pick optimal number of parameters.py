@@ -13,7 +13,7 @@ Looks asymptotic, pick the one at the elbow.
 import numpy as np
 import cv2
 
-img = cv2.imread("images/Alloy.jpg")
+img = cv2.imread("D:/DS_python/Python-for-microscopists/images/Alloy.jpg")
 
 img2 = img.reshape((-1,3))
 
