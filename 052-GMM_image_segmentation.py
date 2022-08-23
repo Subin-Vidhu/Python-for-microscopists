@@ -59,5 +59,5 @@ gmm_labels = gmm_model.predict(img2)
 #Put numbers back to original shape so we can reconstruct segmented image
 original_shape = img.shape
 segmented = gmm_labels.reshape(original_shape[0], original_shape[1])
-cv2.imwrite("images/segmented.jpg", segmented)
+cv2.imwrite("D:/DS_python/Python-for-microscopists/images/segmented.jpg", segmented)
 
