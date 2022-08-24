@@ -1,7 +1,7 @@
 # https://www.youtube.com/watch?v=YYjvkSJoui4
 
 """
-@author: Sreenivas Bhattiprolu
+
 
 First part fo code: Same code as logistic regression. 
 
