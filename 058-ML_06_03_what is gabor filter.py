@@ -3,9 +3,7 @@
 
 """
 
-
 What are features? 
-
 
 """
 
