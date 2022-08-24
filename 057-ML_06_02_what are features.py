@@ -16,9 +16,9 @@ from skimage.morphology import disk
 import pandas as pd
 
 img = cv2.imread('scratch.jpg')
-img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY) #Bcoz opencv reads images in BGR format.
 
-img2 = img.reshape(-1)
+img2 = img.reshape(-1) #To make to 1D
 df = pd.DataFrame()
 df['Original Image'] = img2
 
