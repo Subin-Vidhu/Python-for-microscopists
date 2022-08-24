@@ -60,7 +60,7 @@ X = df.drop(labels = ["Productivity"], axis=1)
 
 #STEP 6: SPLIT THE DATA into TRAIN AND TEST data.
 from sklearn.model_selection import train_test_split
-X_train, X_test, y_train, y_test = train_test_split(X, Y, test_size=0.4, random_state=20)
+X_train, X_test, y_train, y_test = train_test_split(X, Y, test_size=0.2, random_state=20)
 #random_state can be any integer and it is used as a seed to randomly split dataset.
 #By doing this we work with same test dataset evry time, if this is important.
 #random_state=None splits dataset randomly every time
