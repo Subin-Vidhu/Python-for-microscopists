@@ -46,7 +46,6 @@ kernel = cv2.getGaborKernel((ksize, ksize), sigma, theta, lamda, gamma, phi, kty
 
 plt.imshow(kernel)
 
-
 img = cv2.imread('synthetic.jpg')
 #img = cv2.imread('BSE_Image.jpg')
 img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
