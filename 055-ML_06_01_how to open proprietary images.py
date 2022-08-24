@@ -3,7 +3,6 @@
 
 """
 
-
 #First google search for czi file and python
 You will see a few libraries. 
 Let us click on the first one, czifile
