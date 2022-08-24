@@ -5,7 +5,6 @@
 
 What are features? 
 
-
 """
 
 #A few generic filters...
