@@ -2,7 +2,6 @@
 
 """
 
-
 First part fo code: Same code as logistic regression. 
 
 """
