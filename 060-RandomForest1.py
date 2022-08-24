@@ -12,7 +12,7 @@ import numpy as np
 
 #STEP 1: DATA READING AND UNDERSTANDING
 
-df = pd.read_csv("other_files/images_analyzed_productivity1.csv")
+df = pd.read_csv("D:/DS_python/Python-for-microscopists/other_files/images_analyzed_productivity1.csv")
 print(df.head())
 
 
