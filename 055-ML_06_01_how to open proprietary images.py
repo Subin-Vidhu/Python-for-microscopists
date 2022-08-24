@@ -35,4 +35,5 @@ img4=img1[2,:,:] #Third channel
 import matplotlib.pyplot as plt
 plt.imshow(img2, cmap='hot')
 
+
 #Olympus images, similar way https://pypi.org/project/oiffile/
