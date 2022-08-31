@@ -81,7 +81,7 @@ markers = markers+10
 
 # Now, mark the region of unknown with zero
 markers[unknown==255] = 0
-#plt.imshow(markers, cmap='jet')   #Look at the 3 distinct regions.
+plt.imshow(markers, cmap='jet')   #Look at the 3 distinct regions.
 
 #Now we are ready for watershed filling. 
 markers = cv2.watershed(img,markers)
@@ -93,9 +93,9 @@ img[markers == -1] = [0,255,255]
 
 img2 = color.label2rgb(markers, bg_label=0)
 
-#cv2.imshow('Overlay on original image', img)
-#cv2.imshow('Colored Grains', img2)
-#cv2.waitKey(0)
+cv2.imshow('Overlay on original image', img)
+cv2.imshow('Colored Grains', img2)
+cv2.waitKey(0)
 
 #Now, time to extract properties of detected cells
 # regionprops function in skimage measure module calculates useful parameters for each object.
