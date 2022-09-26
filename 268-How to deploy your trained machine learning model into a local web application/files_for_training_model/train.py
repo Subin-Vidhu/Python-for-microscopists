@@ -57,7 +57,7 @@ print("Mean sq. errror between y_test and predicted =", np.mean(prediction_test-
 import pickle
 pickle.dump(model, open('model.pkl','wb'))
 
-model = pickle.load(open('model.pkl','rb'))
+model = pickle.load(open('D:/DS_python/Python-for-microscopists/268-How to deploy your trained machine learning model into a local web application/files_for_training_model/model.pkl','rb'))
 print(model.predict([[20.1, 56.3]]))
 
 
