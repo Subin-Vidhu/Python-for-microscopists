@@ -22,7 +22,7 @@ import pandas as pd
 import seaborn as sns
 import numpy as np
 
-df = pd.read_csv('heart_data.csv')
+df = pd.read_csv('D:/DS_python/Python-for-microscopists/268-How to deploy your trained machine learning model into a local web application/files_for_training_model/heart_data.csv')
 print(df.head())
 
 df = df.drop("Unnamed: 0", axis=1)
