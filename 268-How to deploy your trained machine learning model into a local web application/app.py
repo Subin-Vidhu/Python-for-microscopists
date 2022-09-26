@@ -37,6 +37,7 @@ def home():
 #POST: Used to send HTML form data to the server.
 #Add Post method to the decorator to allow for form submission. 
 #Redirect to /predict page with the output
+
 @app.route('/predict',methods=['POST'])
 def predict():
 
