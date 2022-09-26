@@ -19,7 +19,7 @@ import pickle
 app = Flask(__name__)
 
 #Load the trained model. (Pickle file)
-model = pickle.load(open('models/model.pkl', 'rb'))
+model = pickle.load(open('D:/DS_python/Python-for-microscopists/268-How to deploy your trained machine learning model into a local web application/files_for_training_model/model.pkl', 'rb'))
 
 #Define the route to be home. 
 #The decorator below links the relative route of the URL to the function it is decorating.
