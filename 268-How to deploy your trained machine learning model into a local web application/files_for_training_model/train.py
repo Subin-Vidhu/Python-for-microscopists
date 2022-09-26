@@ -1,4 +1,5 @@
 # https://youtu.be/bluclMxiUkA
+
 """
 Multiple Linear Regression uses several explanatory variables to predict the outcome of a response variable.
 There are a lot of variables and multiple linear regression is designed to create a model 
