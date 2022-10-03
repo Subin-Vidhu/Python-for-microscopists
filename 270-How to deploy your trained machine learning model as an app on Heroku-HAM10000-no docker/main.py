@@ -33,7 +33,7 @@ def getPrediction(filename):
     
     
     #Load model
-    my_model=load_model("Dmodel/HAM10000_100epochs.h5 ")
+    my_model=load_model("model/HAM10000_100epochs.h5 ")
     
     SIZE = 32 #Resize to same size as training images
     img_path = 'static/images/'+filename
@@ -51,6 +51,6 @@ def getPrediction(filename):
     return pred_class
 
 
-#test_prediction = getPrediction('Capture.JPG')
+test_prediction = getPrediction('Capture.JPG')
 
 
