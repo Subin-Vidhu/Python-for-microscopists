@@ -51,6 +51,6 @@ def getPrediction(filename):
     return pred_class
 
 
-test_prediction = getPrediction('D:/DS_python/Python-for-microscopists/270-How to deploy your trained machine learning model as an app on Heroku-HAM10000-no docker/static/images/Capture.JPG')
+test_prediction = getPrediction('Capture.JPG')
 
 
