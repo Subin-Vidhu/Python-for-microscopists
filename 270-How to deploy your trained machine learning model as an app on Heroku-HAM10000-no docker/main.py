@@ -36,7 +36,7 @@ def getPrediction(filename):
     my_model=load_model("Dmodel/HAM10000_100epochs.h5 ")
     
     SIZE = 32 #Resize to same size as training images
-    img_path = 'Dstatic/images/'+filename
+    img_path = 'static/images/'+filename
     img = np.asarray(Image.open(img_path).resize((SIZE,SIZE)))
     
     img = img/255.      #Scale pixel values
