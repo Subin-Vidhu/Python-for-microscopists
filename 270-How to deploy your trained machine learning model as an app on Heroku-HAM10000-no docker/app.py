@@ -14,7 +14,7 @@ from main import getPrediction
 import os
 
 #Save images to the 'static' folder as Flask serves images from this directory
-UPLOAD_FOLDER = 'D:/DS_python/Python-for-microscopists/270-How to deploy your trained machine learning model as an app on Heroku-HAM10000-no docker/static/images/'
+UPLOAD_FOLDER = 'static/images/'
 
 #Create an app object using the Flask class. 
 app = Flask(__name__, static_folder="static")
