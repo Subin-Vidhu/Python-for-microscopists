@@ -17,7 +17,6 @@ Dermatofibroma (df)
 """
 
 
-
 import numpy as np
 from PIL import Image
 from sklearn.preprocessing import LabelEncoder
