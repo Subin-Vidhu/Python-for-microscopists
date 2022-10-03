@@ -51,6 +51,6 @@ def getPrediction(filename):
     return pred_class
 
 
-test_prediction = getPrediction('Capture.JPG')
+#test_prediction = getPrediction('Capture.JPG')
 
 
