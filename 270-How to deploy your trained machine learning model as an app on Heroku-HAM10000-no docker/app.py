@@ -10,7 +10,7 @@ Flask then builds upon this foundation to provide a complete web framework.
 
 from flask import Flask, render_template, request, redirect, flash
 from werkzeug.utils import secure_filename
-from main import getPrediction
+from main import getPrediction, getPrediction1
 import os
 
 #Save images to the 'static' folder as Flask serves images from this directory
@@ -51,12 +51,16 @@ def submit_file():
             flash('No file selected for uploading')
             return redirect(request.url)
         if file:
+            print("file inserted", file)
             filename = secure_filename(file.filename)  #Use this werkzeug method to secure filename. 
+            print("secure file inserted", filename)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'],filename))
             #getPrediction(filename)
-            label = getPrediction(filename)
+            label = getPrediction1(filename)
+            print("label", label)
             flash(label)
             full_filename = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+            print("full filename: ", full_filename)
             flash(full_filename)
             return redirect('/')
 
