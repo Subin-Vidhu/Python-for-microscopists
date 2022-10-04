@@ -11,7 +11,7 @@
 </head>
 
 
-<body style="background: #000;">
+<body style="background: rgb(212, 202, 202);">
 
 <h2 style="color:Violet;">Skin Cancer Lesion Classifier</h2><p>
 <h4 style="color:Violet;">Upload an image and click submit</h4>
@@ -34,7 +34,7 @@
 	{% with messages = get_flashed_messages() %}
 	  {% if messages %}
         Diagnosis for the following image is: <u><h3 style="color:MediumSeaGreen;">{{ messages[0] }}</h3></u><br>
-        <img src="Predicted/A03513Y11_e_tiff.png" width="300", height="225">
+        <img src="{{ messages[1] }}" width="300", height="225">
        
 	  {% endif %}
 	{% endwith %}

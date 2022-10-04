@@ -8,8 +8,9 @@ import os
 #directory = "RC"
   
 # Parent Directory path
-parent_dir_img = "D:/Pathology_23_5_22/single_img_patchify_new/"
-parent_dir_mask = "D:/Pathology_23_5_22/single_msk_patchify_new/"
+parent_dir_img = "D:/DS_python/Python-for-microscopists/270-How to deploy your trained machine learning model as an app on Heroku-HAM10000-no docker/Patchify/"
+#parent_dir_mask = "D:/Pathology_23_5_22/single_msk_patchify_new/"
+
 # Path
 #path = os.path.join(parent_dir, directory)
   
@@ -21,7 +22,7 @@ parent_dir_mask = "D:/Pathology_23_5_22/single_msk_patchify_new/"
   
 
 directory_img = "A02B74X11_d_img"  #### replace the name of the image 
-directory_mask = "A02B74X11_d_mask" #### replace the name of the mask
+#directory_mask = "A02B74X11_d_mask" #### replace the name of the mask
 path1 = os.path.join(parent_dir_img, directory_img)
 os.mkdir(path1)
 path2 = os.path.join(parent_dir_mask, directory_mask)
@@ -47,14 +48,14 @@ large_image.shape
 large_image = cv2.resize(large_image, (1792, 768))
 plt.imshow(large_image )
 
-count = 0
-patches_img = patchify(large_image, (256, 256,3), step=256)
-for i in range(patches_img.shape[0]):
-    for j in range(patches_img.shape[1]):
-        single_patch_img = patches_img[i,j,:,:]
-        count = count +1
-        tiff.imwrite(path1 + '/image(' + str(count)+ ").tif", single_patch_img)
-        print(count)
+    count = 0
+    patches_img = patchify(large_image, (256, 256,3), step=256)
+    for i in range(patches_img.shape[0]):
+        for j in range(patches_img.shape[1]):
+            single_patch_img = patches_img[i,j,:,:]
+            count = count +1
+            tiff.imwrite(path1 + '/image(' + str(count)+ ").tif", single_patch_img)
+            print(count)
         
 large_mask = tiff.imread('D:/Pathology_23_5_22/A02B74X11_d_mask.tif')   ### rename ###
 large_mask.shape

@@ -15,7 +15,8 @@ import os
 
 #Save images to the 'static' folder as Flask serves images from this directory
 UPLOAD_FOLDER = 'static/images/'
-UPLOAD_FOLDER_PRED = 'D:/DS_python/Python-for-microscopists/270-How to deploy your trained machine learning model as an app on Heroku-HAM10000-no docker/Predicted/'
+UPLOAD_FOLDER_PRED = 'static/Predicted/'
+UPLOAD_FOLDER_RESULT = 'static/Results/'
 #Create an app object using the Flask class. 
 app = Flask(__name__, static_folder="static")
 
@@ -30,6 +31,7 @@ app.secret_key = "secret key"
 #Define the upload folder to save images uploaded by the user. 
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['Predicted'] = UPLOAD_FOLDER_PRED
+app.config['RESULT'] = UPLOAD_FOLDER_RESULT
 #Define the route to be home. 
 #The decorator below links the relative route of the URL to the function it is decorating.
 #Here, index function is with '/', our root directory. 
@@ -60,7 +62,7 @@ def submit_file():
             print("label", label)
             flash(label)
             filename_pred = filename.split(".")[0] +".png"
-            full_filename = os.path.join(app.config['Predicted'], filename_pred)
+            full_filename = os.path.join(app.config['RESULT'], filename_pred)
             print("full filename: ", full_filename)
             flash(full_filename)
             return redirect('/')
