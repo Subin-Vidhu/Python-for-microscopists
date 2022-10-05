@@ -137,7 +137,7 @@ def getPrediction1(filename):
     train_images = np.array(train_images)
     #train_masks = np.array(train_masks)
 
- '''   ####### To check Prediction #########
+    '''   ####### To check Prediction #########
     import random
     test_img_number = random.randint(0, len(train_images)-1)
     test_img = train_images[test_img_number]
@@ -197,7 +197,7 @@ def getPrediction1(filename):
         cv2.imwrite(path3+"/"+"image("+str(i+1)+").png",test_prediction1*255)
         #plt.show()
 
-############################ Unpatchify  ####################################
+    ############################ Unpatchify  ####################################
 
     #Apply a trained model on large image, patch by patch
     path_RC = path3 + "/"
