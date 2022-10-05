@@ -34,8 +34,8 @@
 	{% with messages = get_flashed_messages() %}
 	  {% if messages %}
         Number of centroblasts detected is: <u><h3 style="color:rgb(170, 18, 12);">{{ messages[0] }}</h3></u><br>
-        <h2 style="color: rgb(34, 105, 78)">IMAGE</h2>
-        <h2 style="color: rgb(34, 105, 78)">PREDICTION</h2>
+        <p><h2 style="color: rgb(34, 105, 78)">IMAGE</h2>
+          <h2 style="color: rgb(34, 105, 78)">PREDICTION</h2></p>
         <img src="{{ messages[1] }}" width="500", height="425" title="IMAGE" style="margin: 1px 1px 1px 1px;" >
         <img src="{{ messages[2] }}" width="500", height="425" title="PREDICTION">
        
