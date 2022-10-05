@@ -78,18 +78,18 @@ def submit_file():
             mydir = "D:/DS_python/Python-for-microscopists/270-How to deploy your trained machine learning model as an app on Heroku-HAM10000-no docker/static/Results"
             filelist = [ f for f in os.listdir(mydir) ]
             for f in filelist:
-                print("f", f)
+                #print("f", f)
                 path = os.path.join(mydir, f)
                 path = path.replace("\\", "/")
-                print("path", path)
+                #print("path", path)
                 os.rmdir(path)
             mydir = "D:/DS_python/Python-for-microscopists/270-How to deploy your trained machine learning model as an app on Heroku-HAM10000-no docker/Patchify"
             filelist = [ f for f in os.listdir(mydir) ]
             for f in filelist:
-                print("f", f)
+                #print("f", f)
                 path = os.path.join(mydir, f)
                 path = path.replace("\\", "/")
-                print("path", path)
+                #print("path", path)
                 os.rmdir(path)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'],filename))
             #getPrediction(filename)
