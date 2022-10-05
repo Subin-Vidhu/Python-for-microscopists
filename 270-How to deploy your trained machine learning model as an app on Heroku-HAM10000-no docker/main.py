@@ -37,8 +37,9 @@ import keras
 def getPrediction1(filename):
     print("Hi, I am inside Prediction function!")
 
+    #filename = "A31P15X11 a.tif"
     #from keras.models import load_model
-    model1 = load_model('D:/DS_python/Python-for-microscopists/270-How to deploy your trained machine learning model as an app on Heroku-HAM10000-no docker/model/binary_pathology_resnet_34_160_images_annotated_only.hdf5', compile=False)
+    model1 = load_model('D:/DS_python/Python-for-microscopists/270-How to deploy your trained machine learning model as an app on Heroku-HAM10000-no docker/model/binary_pathology_resnet_34_160_augmented.hdf5', compile=False)
 
 
     # importing os module
@@ -136,10 +137,35 @@ def getPrediction1(filename):
     train_images = np.array(train_images)
     #train_masks = np.array(train_masks)
 
-
-
+ '''   ####### To check Prediction #########
+    import random
+    test_img_number = random.randint(0, len(train_images)-1)
+    test_img = train_images[test_img_number]
+    #ground_truth=train_masks[test_img_number]
+    test_img_input=np.expand_dims(test_img, 0)
+    
+    test_img_input1 = preprocess_input1(test_img_input)
+    
+    test_pred1 = model1.predict(test_img_input1)
+    test_prediction1 = np.argmax(test_pred1, axis=3)[0,:,:]
+    
+    
+    plt.figure(figsize=(12, 8))
+    plt.subplot(231)
+    plt.title('Testing Image')
+    plt.imshow(test_img[:,:,0], cmap='gray')
+    #plt.subplot(232)
+    #plt.title('Testing Label')
+    #plt.imshow(ground_truth[:,:,0], cmap='jet')
+    plt.subplot(232)
+    plt.title('Prediction on test image')
+    plt.imshow(test_prediction1, cmap='jet')
+    plt.show()
+    '''
+    
+    
     ### Reading images to predict and saving it to folder 
-    path_RC6 = "D:/DS_python/Python-for-microscopists/270-How to deploy your trained machine learning model as an app on Heroku-HAM10000-no docker/Predicted/"
+    path_RC6 = "D:/DS_python/Python-for-microscopists/270-How to deploy your trained machine learning model as an app on Heroku-HAM10000-no docker/static/Results/"
     image = filename.split(".")[0]   #### Change the image name ################
     path3 = os.path.join(path_RC6, image)
     os.mkdir(path3)
@@ -155,7 +181,7 @@ def getPrediction1(filename):
 
         test_pred1 = model1.predict(test_img_input1)
         test_prediction1 = np.argmax(test_pred1, axis=3)[0,:,:]
-
+        print(np.unique(test_prediction1))
 
         #plt.figure(figsize=(20, 15))
         ''' plt.subplot(231)
@@ -168,7 +194,7 @@ def getPrediction1(filename):
         plt.title('Prediction on test image')'''
         #plt.axis("off")
         #plt.imshow(test_prediction1, cmap='jet')
-        cv2.imwrite(path3+"/"+"image("+str(i+1)+").png",test_prediction1)
+        cv2.imwrite(path3+"/"+"image("+str(i+1)+").png",test_prediction1*255)
         #plt.show()
 
 ############################ Unpatchify  ####################################
@@ -181,7 +207,7 @@ def getPrediction1(filename):
         print(k)
         #plt.figure(figsize=(30, 25))
 
-        img3 = cv2.imread(path_RC+"image("+str(k)+").png", 0)
+        img3 = cv2.imread(path_RC+"image("+str(k)+").png", 0)/255
         img = img3
         #img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
         img = cv2.resize(img, (256, 256))
@@ -194,14 +220,14 @@ def getPrediction1(filename):
     predicted_patches_reshaped = np.reshape(predicted_patches, (3, 7, 256,256) )
 
 
-    path_op = "D:/DS_python/Python-for-microscopists/270-How to deploy your trained machine learning model as an app on Heroku-HAM10000-no docker/static/Results/" 
+    path_op = "D:/DS_python/Python-for-microscopists/270-How to deploy your trained machine learning model as an app on Heroku-HAM10000-no docker/static/Unpatchified_Result/" 
     #path_op = os.path.join(path_op,image)
     #os.mkdir(path_op)
     reconstructed_image = unpatchify(predicted_patches_reshaped, (768,1792))
     #plt.figure(figsize=(30, 25))
     #plt.axis("off")
     #plt.imshow(reconstructed_image, cmap='gray')
-    cv2.imwrite(path_op + filename.split(".")[0] +".png",reconstructed_image)
+    cv2.imwrite(path_op + filename.split(".")[0] +".png",reconstructed_image*255)
     #plt.show()
 
 
@@ -238,5 +264,3 @@ def getPrediction(filename):
 
 
 #test_prediction = getPrediction('Capture.JPG')
-
-

@@ -16,7 +16,7 @@ import os
 #Save images to the 'static' folder as Flask serves images from this directory
 UPLOAD_FOLDER = 'static/images/'
 UPLOAD_FOLDER_PRED = 'static/Predicted/'
-UPLOAD_FOLDER_RESULT = 'static/Results/'
+UPLOAD_FOLDER_RESULT = 'static/Unpatchified_Result/'
 #Create an app object using the Flask class. 
 app = Flask(__name__, static_folder="static")
 
