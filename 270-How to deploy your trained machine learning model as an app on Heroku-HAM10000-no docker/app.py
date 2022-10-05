@@ -73,6 +73,37 @@ def submit_file():
             for f in files:
                 f = f.replace("\\","/")
                 os.remove(f)
+
+            #Removes files (files in subdirectories) from Patchify and Results folders
+            mydir = "D:/DS_python/Python-for-microscopists/270-How to deploy your trained machine learning model as an app on Heroku-HAM10000-no docker//static/Results"
+            filelist = [ f for f in os.listdir(mydir) ]
+            for f in filelist:
+                print(f)
+                path = os.path.join(mydir, f)
+                print(path)
+                path = path.replace("\\","/")
+                print(path)
+                files = glob.glob(path+'/*')
+                for f in files:
+                    print(f)
+                    f = f.replace("\\","/")
+                    print(f)
+                    os.remove(f)     
+
+            mydir = "D:/DS_python/Python-for-microscopists/270-How to deploy your trained machine learning model as an app on Heroku-HAM10000-no docker/Patchify"
+            filelist = [ f for f in os.listdir(mydir) ]
+            for f in filelist:
+                print(f)
+                path = os.path.join(mydir, f)
+                print(path)
+                path = path.replace("\\","/")
+                print(path)
+                files = glob.glob(path+'/*')
+                for f in files:
+                    print(f)
+                    f = f.replace("\\","/")
+                    print(f)
+                    os.remove(f)     
             #Remove folders inside these folders
             print("Removing folders inside these folders")
             mydir = "D:/DS_python/Python-for-microscopists/270-How to deploy your trained machine learning model as an app on Heroku-HAM10000-no docker/static/Results"
