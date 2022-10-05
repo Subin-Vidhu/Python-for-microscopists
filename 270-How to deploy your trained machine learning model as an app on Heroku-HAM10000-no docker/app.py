@@ -128,6 +128,8 @@ def submit_file():
             print("label", label)
             flash(label)
             filename_pred = filename.split(".")[0] +".png"
+            image = os.path.join(app.config['Predicted'], filename_pred)
+            flash(image)
             full_filename = os.path.join(app.config['RESULT'], filename_pred)
             print("full filename: ", full_filename)
             flash(full_filename)
