@@ -12,6 +12,8 @@ from flask import Flask, render_template, request, redirect, flash
 from werkzeug.utils import secure_filename
 from main import getPrediction, getPrediction1
 import os
+import glob
+
 
 #Save images to the 'static' folder as Flask serves images from this directory
 UPLOAD_FOLDER = 'static/images/'
@@ -19,6 +21,8 @@ UPLOAD_FOLDER_PRED = 'static/Predicted/'
 UPLOAD_FOLDER_RESULT = 'static/Unpatchified_Result/'
 #Create an app object using the Flask class. 
 app = Flask(__name__, static_folder="static")
+
+
 
 #Add reference fingerprint. 
 #Cookies travel with a signature that they claim to be legit. 
@@ -56,6 +60,37 @@ def submit_file():
             print("file inserted", file)
             filename = secure_filename(file.filename)  #Use this werkzeug method to secure filename. 
             print("secure file inserted", filename)
+            #Remove files inside these folders
+            print("Removing files inside these folders")
+            files = glob.glob('D:/DS_python/Python-for-microscopists/270-How to deploy your trained machine learning model as an app on Heroku-HAM10000-no docker/static/images/*')
+            for f in files:
+                os.remove(f)
+            files = glob.glob('D:/DS_python/Python-for-microscopists/270-How to deploy your trained machine learning model as an app on Heroku-HAM10000-no docker/static/Predicted/*')
+            for f in files:
+                f = f.replace("\\","/")
+                os.remove(f)
+            files = glob.glob('D:/DS_python/Python-for-microscopists/270-How to deploy your trained machine learning model as an app on Heroku-HAM10000-no docker/static/Unpatchified_Result/*')
+            for f in files:
+                f = f.replace("\\","/")
+                os.remove(f)
+            #Remove folders inside these folders
+            print("Removing folders inside these folders")
+            mydir = "D:/DS_python/Python-for-microscopists/270-How to deploy your trained machine learning model as an app on Heroku-HAM10000-no docker/static/Results"
+            filelist = [ f for f in os.listdir(mydir) ]
+            for f in filelist:
+                print("f", f)
+                path = os.path.join(mydir, f)
+                path = path.replace("\\", "/")
+                print("path", path)
+                os.rmdir(path)
+            mydir = "D:/DS_python/Python-for-microscopists/270-How to deploy your trained machine learning model as an app on Heroku-HAM10000-no docker/Patchify"
+            filelist = [ f for f in os.listdir(mydir) ]
+            for f in filelist:
+                print("f", f)
+                path = os.path.join(mydir, f)
+                path = path.replace("\\", "/")
+                print("path", path)
+                os.rmdir(path)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'],filename))
             #getPrediction(filename)
             label = getPrediction1(filename)
