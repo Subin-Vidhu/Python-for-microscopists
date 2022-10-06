@@ -19,26 +19,6 @@
       clear: both;
       display: table;
     }
-    .loader-bg {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      background-color: #eee;
-      display: none;
-    }
-    .loader {
-        border: 16px solid #f3f3f3;
-        border-radius: 50%;
-        border-top: 16px solid #3498db;
-        width: 120px;
-        height: 120px;
-        -webkit-animation: spin 2s linear infinite; /* Safari */
-        animation: spin 2s linear infinite;
-    }
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
    </style>
   
 </head>
@@ -64,12 +44,9 @@
 
 
 <p style="color:MediumSeaGreen;">
-  <div class="loader-bg">
-    <div class="loader"></div>
-   </div>
 	{% with messages = get_flashed_messages() %}
 	  {% if messages %}
-        <span style="color:MediumSeaGreen;">Number of centroblasts detected is: </span><u style="color:rgb(170, 18, 12); display: inline;"><span>{{ messages[0] }}</span></u><br>
+        <span style="color:MediumSeaGreen;">Number of centroblasts detected is: </span><u style="color:rgb(170, 18, 12); display: inline;"><span><h2>{{ messages[0] }}</h2></span></u><br>
         <div class="row">
           
           <div class="column" >
@@ -99,18 +76,7 @@
 	  {% endif %}
 	{% endwith %}
 </p>
-
-
-
 </body>
-<script>
-    function showLoader () {
-        document.getElementsByClassName("loader-bg")[0].style.display = "block";
-    }
-    function hideLoader() {
-      document.getElementsByClassName("loader-bg")[0].style.display = "none";
-    }
-</script>
 </html>
 
 
