@@ -45,7 +45,7 @@ app.config['COUNT'] = UPLOAD_FOLDER_COUNT
 #Note that render_template means it looks for the file in the templates folder. 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return render_template('index_edit.html')
 
 #Add Post method to the decorator to allow for form submission. 
 @app.route('/', methods=['POST'])
