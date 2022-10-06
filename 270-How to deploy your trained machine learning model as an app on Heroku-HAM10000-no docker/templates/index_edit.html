@@ -6,6 +6,14 @@
   <!-- Make it compatible to mobile devices -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>PROTOS Centroblast Detector</title>
+
+  <script src="jquery.js"></script> 
+  <script> 
+  $(function(){
+    $("#includedContent").load("D:/DS_python/Python-for-microscopists/270-How to deploy your trained machine learning model as an app on Heroku-HAM10000-no docker/templates/index2.html"); 
+  });
+  </script> 
+
   <link rel="stylesheet" href="index.css">
   <style>
     .column {
@@ -73,15 +81,8 @@
         <img src="{{ messages[1] }}" width="500", height="425" title="IMAGE" >
         <img src="{{ messages[2] }}" width="500", height="425" title="PREDICTION">
         <img src="{{ messages[3] }}" width="500", height="425" title="COUNT"> -->
-       
         {% else %}
-            <div class="container">
-                <div class="ring"></div>
-                <div class="ring"></div>
-                <div class="ring"></div>
-                <span class="loading">Loading...</span>
-            </div>
-    </body>
+            <div id="includedContent"></div>
 	  {% endif %}
       
       
