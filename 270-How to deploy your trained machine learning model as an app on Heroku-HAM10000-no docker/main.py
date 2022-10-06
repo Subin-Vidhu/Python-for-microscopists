@@ -263,7 +263,7 @@ def getPrediction1(filename):
         if area > 1000 :
             count.append(x)
     cv2.drawContours(copy2, count, -1, (255,0,0), 3)
-    cv2.imwrite("D:/DS_python/Python-for-microscopists/270-How to deploy your trained machine learning model as an app on Heroku-HAM10000-no docker/static/Count",filename.split(".")[0] +".png")
+    cv2.imwrite("D:/DS_python/Python-for-microscopists/270-How to deploy your trained machine learning model as an app on Heroku-HAM10000-no docker/static/Count/"+filename.split(".")[0] +".png",copy2)
     #print("number of lemons found via contour detection = ", len(count))
     return len(count)
     
