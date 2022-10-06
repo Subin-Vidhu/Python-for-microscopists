@@ -6,15 +6,15 @@
   <!-- Make it compatible to mobile devices -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>PROTOS Centroblast Detector</title>
-
+<!-- 
   <script src="jquery.js"></script> 
   <script> 
   $(function(){
     $("#includedContent").load("D:/DS_python/Python-for-microscopists/270-How to deploy your trained machine learning model as an app on Heroku-HAM10000-no docker/templates/index2.html"); 
   });
-  </script> 
+  </script>  -->
 
-  <link rel="stylesheet" href="index.css">
+  <!-- <link rel="stylesheet" href="index.css"> -->
   <style>
     .column {
       float: left;
@@ -28,6 +28,86 @@
       clear: both;
       display: table;
     }
+    .container *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    .body .container{ 
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: #011015;
+    }
+    .container{
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        /* height: 100%; */
+        /* width: 99%; */
+        z-index: 9999;
+        background-color: transparent;
+        top: 0px;
+        width: 100px;
+        height: 100px;
+        left: 50%;
+        top: 50%;
+        margin-top: -100px;
+        margin-left: -100px;
+        display: none;
+    }
+    .container .ring{
+        width: 200px;
+        height: 200px;
+        border: 0px solid #011015;
+        border-radius: 50%;
+        position: absolute;
+    }
+    .container .ring:nth-child(1){
+        border-bottom-width: 8px;
+        border-color: rgb(255, 0, 255);
+        animation: rotate1 2s linear infinite;
+    }
+    .container .ring:nth-child(2){
+        border-right-width: 8px;
+        border-color: rgb(0, 247, 255);
+        animation: rotate2 2s linear infinite;
+    }
+    .container .ring:nth-child(3){
+        border-top-width: 8px;
+        border-color: rgb(0, 255, 13);
+        animation: rotate3 2s linear infinite;
+    }
+    .container .loading{
+        color: white;
+    }
+    @keyframes rotate1{
+        0%{
+            transform: rotateX(35deg) rotateY(-45deg) rotateZ(0deg);
+        }
+        100%{
+            transform: rotateX(35deg) rotateY(-45deg) rotateZ(360deg);
+        }
+    }
+    @keyframes rotate2{
+        0%{
+            transform: rotateX(50deg) rotateY(10deg) rotateZ(0deg);
+        }
+        100%{
+            transform: rotateX(50deg) rotateY(10deg) rotateZ(360deg);
+        }
+    }
+    @keyframes rotate3{
+        0%{
+            transform: rotateX(35deg) rotateY(55deg) rotateZ(0deg);
+        }
+        100%{
+            transform: rotateX(35deg) rotateY(55deg) rotateZ(360deg);
+        }
+    }
    </style>
   
 </head>
@@ -36,10 +116,10 @@
 <body style="background: rgb(19, 18, 18);">
 
 <h2 style="color:rgb(12, 209, 133);">PATHOLOGY</h2><p>
-<h4 style="color:rgb(26, 189, 126);">Upload a tiff image and click submit</h4>
+<h4 style="color:rgb(26, 189, 126);">Upload a tiff image and click submit.</h4>
 
 
-<form method="post" action="/" enctype="multipart/form-data">
+<form method="post" action="/" enctype="multipart/form-data" onsubmit="showLoader();">
     <dl>
 	<p style="color:rgb(253, 253, 253);">
 		<input type="file" name="file" autocomplete="off" required>
@@ -82,13 +162,25 @@
         <img src="{{ messages[2] }}" width="500", height="425" title="PREDICTION">
         <img src="{{ messages[3] }}" width="500", height="425" title="COUNT"> -->
         {% else %}
-            <div id="includedContent"></div>
+            <!-- <div id="includedContent"></div> -->
+            <div class="container">
+                <div class="ring"></div>
+                <div class="ring"></div>
+                <div class="ring"></div>
+                <span class="loading">Loading...</span>
+            </div>
+            <!-- <div data-include="D:/DS_python/Python-for-microscopists/270-How to deploy your trained machine learning model as an app on Heroku-HAM10000-no docker/templates/index2.html"></div> -->
 	  {% endif %}
       
       
 	{% endwith %}
 </p>
 </body>
+    <script>
+        function showLoader() {
+            document.getElementsByClassName("container")[0].style.display = "flex";
+        }
+    </script>
 </html>
 
 
