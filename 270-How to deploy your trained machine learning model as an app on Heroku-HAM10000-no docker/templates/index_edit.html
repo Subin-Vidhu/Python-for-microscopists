@@ -108,6 +108,9 @@
             transform: rotateX(35deg) rotateY(55deg) rotateZ(360deg);
         }
     }
+    .d-none {
+        display: none;
+    }
    </style>
   
 </head>
@@ -132,26 +135,35 @@
 
 
 
-<p style="color:MediumSeaGreen;">
+<p  style="color:MediumSeaGreen;">
 	{% with messages = get_flashed_messages() %}
 	  {% if messages %}
-        <span style="color:MediumSeaGreen;">Number of centroblasts detected is: </span><u style="color:rgb(170, 18, 12); display: inline;"><span style="font-size: 20px;">{{ messages[0] }}</span></u><br>
+        
         <div class="row">
-          
-          <div class="column" >
-          <h4 style="color:MediumSeaGreen;">{{ "IMAGE" }}</h4>
-          <img src="{{ messages[1] }}" width="400", height="400" title="IMAGE" >
-          </div>
-   
-          <div class="column" >
-          <h4 style="color:MediumSeaGreen;">{{ "PREDICTION" }}</h4>
-          <img src="{{ messages[2] }}" width="400", height="400" title="PREDICTION">
-          </div>
+            
+          <div  id="responseRow">
+            <span style="color:MediumSeaGreen;">Number of centroblasts detected is: </span><u style="color:rgb(170, 18, 12); display: inline;"><span style="font-size: 20px;">{{ messages[0] }}</span></u><br>
+            <div class="column" >
+            <h4 style="color:MediumSeaGreen;">{{ "IMAGE" }}</h4>
+            <img src="{{ messages[1] }}" width="400", height="400" title="IMAGE" >
+            </div>
+    
+            <div class="column" >
+            <h4 style="color:MediumSeaGreen;">{{ "PREDICTION" }}</h4>
+            <img src="{{ messages[2] }}" width="400", height="400" title="PREDICTION">
+            </div>
 
-          <div class="column" >
-          <h4 style="color:MediumSeaGreen;">{{ "COUNT" }}</h4>
-          <img src="{{ messages[3] }}" width="400", height="400" title="COUNT">
-          </div>
+            <div class="column" >
+            <h4 style="color:MediumSeaGreen;">{{ "COUNT" }}</h4>
+            <img src="{{ messages[3] }}" width="400", height="400" title="COUNT">
+            </div>
+        </div>
+          <div class="container d-none">
+            <div class="ring"></div>
+            <div class="ring"></div>
+            <div class="ring"></div>
+            <span class="loading">Loading...</span>
+        </div>
           
        </div>
         <!-- <h2 style="color: rgb(34, 105, 78)">IMAGE</h2>
@@ -178,7 +190,12 @@
 </body>
     <script>
         function showLoader() {
-            document.getElementsByClassName("container")[0].style.display = "flex";
+            let intialLoader = document.getElementsByClassName("container");
+            (intialLoader)  && (intialLoader[0].style.display = "flex")
+            let secondLoaer = document.getElementsByClassName("d-none");
+            (secondLoaer)  && (secondLoaer[0].style.display = "flex");
+            let responseRow = document.getElementById("responseRow");
+            (responseRow) && (responseRow.innerHTML = " ");
         }
     </script>
 </html>
