@@ -19,6 +19,7 @@ import glob
 UPLOAD_FOLDER = 'static/images/'
 UPLOAD_FOLDER_PRED = 'static/Predicted/'
 UPLOAD_FOLDER_RESULT = 'static/Unpatchified_Result/'
+UPLOAD_FOLDER_COUNT = 'static/Count/'
 #Create an app object using the Flask class. 
 app = Flask(__name__, static_folder="static")
 
@@ -36,6 +37,7 @@ app.secret_key = "secret key"
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['Predicted'] = UPLOAD_FOLDER_PRED
 app.config['RESULT'] = UPLOAD_FOLDER_RESULT
+app.config['COUNT'] = UPLOAD_FOLDER_COUNT
 #Define the route to be home. 
 #The decorator below links the relative route of the URL to the function it is decorating.
 #Here, index function is with '/', our root directory. 
@@ -125,14 +127,16 @@ def submit_file():
             file.save(os.path.join(app.config['UPLOAD_FOLDER'],filename))
             #getPrediction(filename)
             label = getPrediction1(filename)
-            print("label", label)
+            print("count", label)
             flash(label)
             filename_pred = filename.split(".")[0] +".png"
             image = os.path.join(app.config['Predicted'], filename_pred)
             flash(image)
-            full_filename = os.path.join(app.config['RESULT'], filename_pred)
-            print("full filename: ", full_filename)
-            flash(full_filename)
+            prediction = os.path.join(app.config['RESULT'], filename_pred)
+            print("full filename: ", prediction)
+            flash(prediction)
+            count = os.path.join(app.config['COUNT'], filename_pred)
+            flash(count)
             return redirect('/')
 
 

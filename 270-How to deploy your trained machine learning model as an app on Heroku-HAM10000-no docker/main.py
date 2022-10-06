@@ -230,7 +230,43 @@ def getPrediction1(filename):
     cv2.imwrite(path_op + filename.split(".")[0] +".png",reconstructed_image*255)
     #plt.show()
 
+    #Count 
+    copy1 = cv2.imread(path_op + filename.split(".")[0] +".png")
 
+    img = copy1.copy()
+    #converting to HSV color model
+    hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
+    #plt.imshow(hsv)
+    print(hsv.shape)
+
+    h, s, v = cv2.split(hsv)
+    #plt.imshow(v)
+
+    _, thr = cv2.threshold(v, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
+    #plt.imshow(thr)
+
+    #blurring the image
+    blur = cv2.medianBlur(thr, 5)
+    #plt.imshow(blur)
+
+
+    contours, hierarchy = cv2.findContours(blur,cv2.RETR_TREE,cv2.CHAIN_APPROX_SIMPLE)
+    cv2.drawContours(copy1, contours, -1, (0,0,255), 3)
+    #plt.imshow(copy1)
+    #print("number of lemons found including error = ", len(contours))
+
+    # arbitarily removing patches having area greater than 1000
+    copy2 = img.copy()
+    count = []
+    for x in contours:
+        area = cv2.contourArea(x)
+        if area > 1000 :
+            count.append(x)
+    cv2.drawContours(copy2, count, -1, (255,0,0), 3)
+    cv2.imwrite("D:/DS_python/Python-for-microscopists/270-How to deploy your trained machine learning model as an app on Heroku-HAM10000-no docker/static/Count",filename.split(".")[0] +".png")
+    #print("number of lemons found via contour detection = ", len(count))
+    return len(count)
+    
 
 def getPrediction(filename):
     print("Hi, I am inside Prediction function!")
