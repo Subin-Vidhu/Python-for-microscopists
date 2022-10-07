@@ -75,7 +75,10 @@ def submit_file():
             for f in files:
                 f = f.replace("\\","/")
                 os.remove(f)
-
+	    files = glob.glob('static/Count/*')
+            for f in files:
+                f = f.replace("\\","/")
+                os.remove(f)
             #Removes files (files in subdirectories) from Patchify and Results folders
             mydir = "static/Results"
             filelist = [ f for f in os.listdir(mydir) ]

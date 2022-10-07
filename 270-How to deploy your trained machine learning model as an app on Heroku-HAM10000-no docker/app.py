@@ -10,7 +10,7 @@ Flask then builds upon this foundation to provide a complete web framework.
 
 from flask import Flask, render_template, request, redirect, flash
 from werkzeug.utils import secure_filename
-from main import getPrediction, getPrediction1
+from main import getPrediction1
 import os
 import glob
 
@@ -72,6 +72,11 @@ def submit_file():
                 f = f.replace("\\","/")
                 os.remove(f)
             files = glob.glob('static/Unpatchified_Result/*')
+            for f in files:
+                f = f.replace("\\","/")
+                os.remove(f)
+
+            files = glob.glob('static/Count/*')
             for f in files:
                 f = f.replace("\\","/")
                 os.remove(f)
