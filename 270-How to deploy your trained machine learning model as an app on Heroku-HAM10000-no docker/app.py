@@ -133,7 +133,10 @@ def submit_file():
             #getPrediction(filename)
             label = getPrediction1(filename)
             print("count", label)
-            flash(label)
+            flash(label[1])
+            flash(label[2])
+            flash(label[3])
+
             filename_pred = filename.split(".")[0] +".png"
             image = os.path.join(app.config['Predicted'], filename_pred)
             flash(image)

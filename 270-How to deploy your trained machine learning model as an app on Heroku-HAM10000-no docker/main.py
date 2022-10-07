@@ -39,17 +39,20 @@ def getPrediction1(filename):
     
     BACKBONE1 = 'resnet101'
     preprocess_input1 = sm.get_preprocessing(BACKBONE1)
-
+    print("Backbone Loaded")
     #filename = "A31P15X11 a.tif"
     #from keras.models import load_model
     model1 = load_model('model/weights-improvement-150-0.68.hdf5', compile=False)
 
-
+    print("model loaded")
     #Reading Images RC1
-    test_image_gt_RC1__=nib.load(filename)
+    print("filename", filename)
+    path = "static/images/"
+    test_image_gt_RC1__=nib.load(path+filename)
     test_image_gt_RC1_ = test_image_gt_RC1__.get_fdata()
     print("Read .nii File")
     test_image_gt_RC1 = test_image_gt_RC1_.transpose(2,1,0)
+    test_image_gt_RC1 = np.clip(test_image_gt_RC1,-135,215)
     test_image_gt_RC1=scaler.fit_transform(test_image_gt_RC1.reshape(-1, test_image_gt_RC1.shape[-1])).reshape(test_image_gt_RC1.shape)
     test_image_gt_RC1.shape
     for i in range(0, len(test_image_gt_RC1)):
@@ -74,14 +77,14 @@ def getPrediction1(filename):
     #append slices
 
     ###### for testing the performance of the model
-    for i in range(450, 650):
+    for i in range(300, 600):
 
         test_image_gt_one1 = ground_truth_array_test[i,:,:]
         test_image_gt_one_reshape1 = cv2.resize(test_image_gt_one1,(img_size,img_size), cv2.COLOR_BGR2RGB)
 
         test_img_input2 = preprocess_input1(test_image_gt_one_reshape1)
         test_img_input2 = np.expand_dims(test_img_input2, 0)
-        test_pred2 = model2.predict(test_img_input2)
+        test_pred2 = model1.predict(test_img_input2)
         test_prediction2 = np.argmax(test_pred2, axis=3)[0,:,:]
         preprocessed.append(test_prediction2)
         arr = np.unique(test_prediction2)
@@ -100,37 +103,51 @@ def getPrediction1(filename):
     preprocessed = np.transpose(np.array(preprocessed), [2, 1, 0])
     nifty = nib.Nifti1Image(preprocessed, np.diagflat([x, y, z, 1]), dtype=np.int16)
     nib.save(nifty, filename="static/Unpatchified_Result/predicted.nii")
-        
+    
+    pred_path = "static/Unpatchified_Result"
+    img  = nib.load("D:/ARAMIS/ARAMIS_RENAL/ARAMIS_RENAL_Comparison/comparison_on_RC207/predicted.nii")
 
-    def getPrediction(filename):
-        print("Hi, I am inside Prediction function!")
-        classes = ['Actinic keratoses', 'Basal cell carcinoma', 
-                'Benign keratosis-like lesions', 'Dermatofibroma', 'Melanoma', 
-                'Melanocytic nevi', 'Vascular lesions']
-        le = LabelEncoder()
-        le.fit(classes)
-        le.inverse_transform([2])
+    voxel_volume = np.prod(img.header.get_zooms())
+    data = np.asarray(img.dataobj)
+    count =  np.unique(data,  return_counts=True) 
+    volume = {k: count[1][k] * voxel_volume for k in range(0,4)}
+
+    print("Volume", volume)
+        
+    return volume
+
+    #Volume = volume(img)
+
+
+    # def getPrediction(filename):
+    #     print("Hi, I am inside Prediction function!")
+    #     classes = ['Actinic keratoses', 'Basal cell carcinoma', 
+    #             'Benign keratosis-like lesions', 'Dermatofibroma', 'Melanoma', 
+    #             'Melanocytic nevi', 'Vascular lesions']
+    #     le = LabelEncoder()
+    #     le.fit(classes)
+    #     le.inverse_transform([2])
         
     
-    #Load model
-    my_model=load_model("model/HAM10000_100epochs.h5 ")
-    print("Hi, model loaded!")
-    SIZE = 32 #Resize to same size as training images
-    img_path = 'static/images/'+filename
-    print("Image_Path", img_path)
-    img = np.asarray(Image.open(img_path).resize((SIZE,SIZE)))
+    # #Load model
+    # my_model=load_model("model/HAM10000_100epochs.h5 ")
+    # print("Hi, model loaded!")
+    # SIZE = 32 #Resize to same size as training images
+    # img_path = 'static/images/'+filename
+    # print("Image_Path", img_path)
+    # img = np.asarray(Image.open(img_path).resize((SIZE,SIZE)))
     
-    img = img/255.      #Scale pixel values
+    # img = img/255.      #Scale pixel values
     
-    img = np.expand_dims(img, axis=0)  #Get it tready as input to the network       
-    print("Here")
-    pred = my_model.predict(img) #Predict                    
-    print("After Prediction")
-    print("pred", pred)
-    #Convert prediction to class name
-    pred_class = le.inverse_transform([np.argmax(pred)])[0]
-    print("Diagnosis is:", pred_class)
-    return pred_class
+    # img = np.expand_dims(img, axis=0)  #Get it tready as input to the network       
+    # print("Here")
+    # pred = my_model.predict(img) #Predict                    
+    # print("After Prediction")
+    # print("pred", pred)
+    # #Convert prediction to class name
+    # pred_class = le.inverse_transform([np.argmax(pred)])[0]
+    # print("Diagnosis is:", pred_class)
+    # return pred_class
 
 
 #test_prediction = getPrediction('Capture.JPG')
