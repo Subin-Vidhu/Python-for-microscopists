@@ -39,10 +39,10 @@ def getPrediction1(filename):
     import segmentation_models as sm
     BACKBONE1 = 'resnet101'
     preprocess_input1 = sm.get_preprocessing(BACKBONE1)
-    
+
     #filename = "A31P15X11 a.tif"
     #from keras.models import load_model
-    model1 = load_model('model/binary_pathology_resnet_34_160_augmented.hdf5', compile=False)
+    model1 = load_model('model/weights-improvement-150-0.68', compile=False)
 
 
     # importing os module
