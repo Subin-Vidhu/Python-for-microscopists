@@ -42,7 +42,7 @@ def getPrediction1(filename):
 
     #filename = "A31P15X11 a.tif"
     #from keras.models import load_model
-    model1 = load_model('model/weights-improvement-150-0.68', compile=False)
+    model1 = load_model('model/weights-improvement-150-0.68.hdf5', compile=False)
 
 
     #Reading Images RC1
