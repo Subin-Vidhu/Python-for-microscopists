@@ -13,6 +13,7 @@ from werkzeug.utils import secure_filename
 from main import getPrediction1
 import os
 import glob
+import numpy as np
 
 
 #Save images to the 'static' folder as Flask serves images from this directory
@@ -133,9 +134,14 @@ def submit_file():
             #getPrediction(filename)
             label = getPrediction1(filename)
             print("count", label)
-            flash(label[1])
-            flash(label[2])
-            flash(label[3])
+            if((len(label)==4)):
+                flash(round(label[1]/1000, 2))
+                flash(round(label[2]/1000, 2))
+                flash(round(label[3]/1000, 2))
+            else:
+                flash(0)
+                flash(round(label[1]/1000, 2))
+                flash(round(label[2]/1000, 2))
 
             filename_pred = filename.split(".")[0] +".png"
             image = os.path.join(app.config['Predicted'], filename_pred)

@@ -104,12 +104,13 @@ def getPrediction1(filename):
     nifty = nib.Nifti1Image(preprocessed, np.diagflat([x, y, z, 1]), dtype=np.int16)
     nib.save(nifty, filename="static/Unpatchified_Result/predicted.nii")
     
-    pred_path = "static/Unpatchified_Result"
-    img  = nib.load("D:/ARAMIS/ARAMIS_RENAL/ARAMIS_RENAL_Comparison/comparison_on_RC207/predicted.nii")
+    pred_path = "static/Unpatchified_Result/"
+    img  = nib.load(pred_path+"predicted.nii")
 
     voxel_volume = np.prod(img.header.get_zooms())
     data = np.asarray(img.dataobj)
     count =  np.unique(data,  return_counts=True) 
+    print("COunt", count)
     volume = {k: count[1][k] * voxel_volume for k in range(0,4)}
 
     print("Volume", volume)
