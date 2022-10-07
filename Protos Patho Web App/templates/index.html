@@ -1,0 +1,82 @@
+<!doctype html>
+<html >
+<head>
+  <meta charset="UTF-8">
+  
+  <!-- Make it compatible to mobile devices -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PROTOS Centroblast Detector</title>
+  <style>
+    .column {
+      float: left;
+      width: 22.22%;
+      padding: 5px;
+    }
+    
+  
+    .row::after {
+      content: "";
+      clear: both;
+      display: table;
+    }
+   </style>
+  
+</head>
+
+
+<body style="background: rgb(19, 18, 18);">
+
+<h2 style="color:rgb(12, 209, 133);">PATHOLOGY</h2><p>
+<h4 style="color:rgb(26, 189, 126);">Upload a tiff image and click submit</h4>
+
+
+<form method="post" action="/" enctype="multipart/form-data">
+    <dl>
+	<p style="color:rgb(253, 253, 253);">
+		<input type="file" name="file" autocomplete="off" required>
+	</p>
+    </dl>
+    <p style="color:rgb(245, 245, 245);">
+	<input type="submit" name="submit" value="Submit">
+    </p>
+</form>
+
+
+
+<p style="color:MediumSeaGreen;">
+	{% with messages = get_flashed_messages() %}
+	  {% if messages %}
+        <span style="color:MediumSeaGreen;">Number of centroblasts detected is: </span><u style="color:rgb(170, 18, 12); display: inline;"><span style="font-size: 20px;">{{ messages[0] }}</span></u><br>
+        <div class="row">
+          
+          <div class="column" >
+          <h4 style="color:MediumSeaGreen;">{{ "IMAGE" }}</h4>
+          <img src="{{ messages[1] }}" width="400", height="400" title="IMAGE" >
+          </div>
+   
+          <div class="column" >
+          <h4 style="color:MediumSeaGreen;">{{ "PREDICTION" }}</h4>
+          <img src="{{ messages[2] }}" width="400", height="400" title="PREDICTION">
+          </div>
+
+          <div class="column" >
+          <h4 style="color:MediumSeaGreen;">{{ "COUNT" }}</h4>
+          <img src="{{ messages[3] }}" width="400", height="400" title="COUNT">
+          </div>
+          
+       </div>
+        <!-- <h2 style="color: rgb(34, 105, 78)">IMAGE</h2>
+        <h2 style="color: rgb(34, 105, 78)">PREDICTION</h2>
+        <h2 style="color: rgb(34, 105, 78)">COUNT</h2>
+        
+        <img src="{{ messages[1] }}" width="500", height="425" title="IMAGE" >
+        <img src="{{ messages[2] }}" width="500", height="425" title="PREDICTION">
+        <img src="{{ messages[3] }}" width="500", height="425" title="COUNT"> -->
+       
+	  {% endif %}
+	{% endwith %}
+</p>
+</body>
+</html>
+
+

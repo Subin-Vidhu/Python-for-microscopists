@@ -39,7 +39,7 @@ def getPrediction1(filename):
 
     #filename = "A31P15X11 a.tif"
     #from keras.models import load_model
-    model1 = load_model('D:/DS_python/Python-for-microscopists/270-How to deploy your trained machine learning model as an app on Heroku-HAM10000-no docker/model/binary_pathology_resnet_34_160_augmented.hdf5', compile=False)
+    model1 = load_model('model/binary_pathology_resnet_34_160_augmented.hdf5', compile=False)
 
 
     # importing os module
@@ -49,7 +49,7 @@ def getPrediction1(filename):
     #directory = "RC"
     
     # Parent Directory path
-    parent_dir_img = "D:/DS_python/Python-for-microscopists/270-How to deploy your trained machine learning model as an app on Heroku-HAM10000-no docker/Patchify/"
+    parent_dir_img = "Patchify/"
     #parent_dir_mask = "D:/Pathology_23_5_22/single_msk_patchify_new/"
 
     #Remove directories to start as 0
@@ -74,14 +74,14 @@ def getPrediction1(filename):
     img_path = os.path.join(img_path)
     os.mkdir(img_path)
     print("path1", img_path)
-    path1 = "D:/DS_python/Python-for-microscopists/270-How to deploy your trained machine learning model as an app on Heroku-HAM10000-no docker/static/images/" + filename
+    path1 = "static/images/" + filename
     tiff_image = tiff.imread(path1)
     print("tiff_image", tiff_image)
 
     print("large_image.shape", tiff_image.shape)
     large_image = cv2.resize(tiff_image, (1792, 768))
     print("resized_image.shape", large_image.shape)
-    path_pred = "D:/DS_python/Python-for-microscopists/270-How to deploy your trained machine learning model as an app on Heroku-HAM10000-no docker/static/Predicted/" + filename.split(".")[0] +".png"
+    path_pred = "static/Predicted/" + filename.split(".")[0] +".png"
     print("path_pred", path_pred)
 
     cv2.imwrite(path_pred, large_image)
@@ -165,7 +165,7 @@ def getPrediction1(filename):
     
     
     ### Reading images to predict and saving it to folder 
-    path_RC6 = "D:/DS_python/Python-for-microscopists/270-How to deploy your trained machine learning model as an app on Heroku-HAM10000-no docker/static/Results/"
+    path_RC6 = "static/Results/"
     image = filename.split(".")[0]   #### Change the image name ################
     path3 = os.path.join(path_RC6, image)
     os.mkdir(path3)
@@ -220,7 +220,7 @@ def getPrediction1(filename):
     predicted_patches_reshaped = np.reshape(predicted_patches, (3, 7, 256,256) )
 
 
-    path_op = "D:/DS_python/Python-for-microscopists/270-How to deploy your trained machine learning model as an app on Heroku-HAM10000-no docker/static/Unpatchified_Result/" 
+    path_op = "static/Unpatchified_Result/" 
     #path_op = os.path.join(path_op,image)
     #os.mkdir(path_op)
     reconstructed_image = unpatchify(predicted_patches_reshaped, (768,1792))
@@ -263,7 +263,7 @@ def getPrediction1(filename):
         if area > 1000 :
             count.append(x)
     cv2.drawContours(copy2, count, -1, (255,0,0), 3)
-    cv2.imwrite("D:/DS_python/Python-for-microscopists/270-How to deploy your trained machine learning model as an app on Heroku-HAM10000-no docker/static/Count/"+filename.split(".")[0] +".png",copy2)
+    cv2.imwrite("static/Count/"+filename.split(".")[0] +".png",copy2)
     #print("number of lemons found via contour detection = ", len(count))
     return len(count)
     

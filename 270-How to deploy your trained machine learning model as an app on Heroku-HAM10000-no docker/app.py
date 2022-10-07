@@ -64,20 +64,20 @@ def submit_file():
             print("secure file inserted", filename)
             #Remove files inside these folders
             print("Removing files inside these folders")
-            files = glob.glob('D:/DS_python/Python-for-microscopists/270-How to deploy your trained machine learning model as an app on Heroku-HAM10000-no docker/static/images/*')
+            files = glob.glob('static/images/*')
             for f in files:
                 os.remove(f)
-            files = glob.glob('D:/DS_python/Python-for-microscopists/270-How to deploy your trained machine learning model as an app on Heroku-HAM10000-no docker/static/Predicted/*')
+            files = glob.glob('static/Predicted/*')
             for f in files:
                 f = f.replace("\\","/")
                 os.remove(f)
-            files = glob.glob('D:/DS_python/Python-for-microscopists/270-How to deploy your trained machine learning model as an app on Heroku-HAM10000-no docker/static/Unpatchified_Result/*')
+            files = glob.glob('static/Unpatchified_Result/*')
             for f in files:
                 f = f.replace("\\","/")
                 os.remove(f)
 
             #Removes files (files in subdirectories) from Patchify and Results folders
-            mydir = "D:/DS_python/Python-for-microscopists/270-How to deploy your trained machine learning model as an app on Heroku-HAM10000-no docker//static/Results"
+            mydir = "static/Results"
             filelist = [ f for f in os.listdir(mydir) ]
             for f in filelist:
                 print(f)
@@ -92,7 +92,7 @@ def submit_file():
                     print(f)
                     os.remove(f)     
 
-            mydir = "D:/DS_python/Python-for-microscopists/270-How to deploy your trained machine learning model as an app on Heroku-HAM10000-no docker/Patchify"
+            mydir = "Patchify"
             filelist = [ f for f in os.listdir(mydir) ]
             for f in filelist:
                 print(f)
@@ -108,7 +108,7 @@ def submit_file():
                     os.remove(f)     
             #Remove folders inside these folders
             print("Removing folders inside these folders")
-            mydir = "D:/DS_python/Python-for-microscopists/270-How to deploy your trained machine learning model as an app on Heroku-HAM10000-no docker/static/Results"
+            mydir = "static/Results"
             filelist = [ f for f in os.listdir(mydir) ]
             for f in filelist:
                 #print("f", f)
@@ -116,7 +116,7 @@ def submit_file():
                 path = path.replace("\\", "/")
                 #print("path", path)
                 os.rmdir(path)
-            mydir = "D:/DS_python/Python-for-microscopists/270-How to deploy your trained machine learning model as an app on Heroku-HAM10000-no docker/Patchify"
+            mydir = "Patchify"
             filelist = [ f for f in os.listdir(mydir) ]
             for f in filelist:
                 #print("f", f)
@@ -141,4 +141,4 @@ def submit_file():
 
 
 if __name__ == "__main__":
-    app.run()
+    app.run(host='192.168.1.104')     #ip4 address

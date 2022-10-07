@@ -1,0 +1,181 @@
+<!doctype html>
+<html >
+<head>
+  <meta charset="UTF-8">
+  
+  <!-- Make it compatible to mobile devices -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PROTOS Centroblast Detector</title>
+  <style>
+    .column {
+      float: left;
+      width: 22.22%;
+      padding: 5px;
+    }
+    
+  
+    .row::after {
+      content: "";
+      clear: both;
+      display: table;
+    }
+    .container *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    .body .container{ 
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: #011015;
+    }
+    .container{
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+        background-color: transparent;
+        top: 0px;
+        width: 100px;
+        height: 100px;
+        left: 50%;
+        top: 50%;
+        margin-top: -100px;
+        margin-left: -100px;
+        display: none;
+    }
+    .container .ring{
+        width: 200px;
+        height: 200px;
+        border: 0px solid #011015;
+        border-radius: 50%;
+        position: absolute;
+    }
+    .container .ring:nth-child(1){
+        border-bottom-width: 8px;
+        border-color: rgb(255, 0, 255);
+        animation: rotate1 2s linear infinite;
+    }
+    .container .ring:nth-child(2){
+        border-right-width: 8px;
+        border-color: rgb(0, 247, 255);
+        animation: rotate2 2s linear infinite;
+    }
+    .container .ring:nth-child(3){
+        border-top-width: 8px;
+        border-color: rgb(0, 255, 13);
+        animation: rotate3 2s linear infinite;
+    }
+    .container .loading{
+        color: white;
+    }
+    @keyframes rotate1{
+        0%{
+            transform: rotateX(35deg) rotateY(-45deg) rotateZ(0deg);
+        }
+        100%{
+            transform: rotateX(35deg) rotateY(-45deg) rotateZ(360deg);
+        }
+    }
+    @keyframes rotate2{
+        0%{
+            transform: rotateX(50deg) rotateY(10deg) rotateZ(0deg);
+        }
+        100%{
+            transform: rotateX(50deg) rotateY(10deg) rotateZ(360deg);
+        }
+    }
+    @keyframes rotate3{
+        0%{
+            transform: rotateX(35deg) rotateY(55deg) rotateZ(0deg);
+        }
+        100%{
+            transform: rotateX(35deg) rotateY(55deg) rotateZ(360deg);
+        }
+    }
+    .d-none {
+        display: none;
+    }
+   </style>
+  
+</head>
+
+
+<body style="background: rgb(19, 18, 18);">
+
+<h2 style="color:rgb(12, 209, 133);">PATHOLOGY</h2><p>
+<h4 style="color:rgb(26, 189, 126);">Upload a tiff image and click submit.</h4>
+
+
+<form method="post" action="/" enctype="multipart/form-data" onsubmit="showLoader();">
+    <dl>
+	<p style="color:rgb(253, 253, 253);">
+		<input type="file" name="file" autocomplete="off" required>
+	</p>
+    </dl>
+    <p style="color:rgb(245, 245, 245);">
+	<input type="submit" name="submit" value="Submit">
+    </p>
+</form>
+
+
+
+<p  style="color:MediumSeaGreen;">
+	{% with messages = get_flashed_messages() %}
+	  {% if messages %}
+        
+        <div class="row">
+            
+          <div  id="responseRow">
+            <span style="color:MediumSeaGreen;">Number of centroblasts detected is: </span><u style="color:rgb(170, 18, 12); display: inline;"><span style="font-size: 20px;">{{ messages[0] }}</span></u><br>
+            <div class="column" >
+            <h4 style="color:MediumSeaGreen;">{{ "IMAGE" }}</h4>
+            <img src="{{ messages[1] }}" width="400", height="400" title="IMAGE" >
+            </div>
+    
+            <div class="column" >
+            <h4 style="color:MediumSeaGreen;">{{ "PREDICTION" }}</h4>
+            <img src="{{ messages[2] }}" width="400", height="400" title="PREDICTION">
+            </div>
+
+            <div class="column" >
+            <h4 style="color:MediumSeaGreen;">{{ "COUNT" }}</h4>
+            <img src="{{ messages[3] }}" width="400", height="400" title="COUNT">
+            </div>
+        </div>
+          <div class="container d-none">
+            <div class="ring"></div>
+            <div class="ring"></div>
+            <div class="ring"></div>
+            <span class="loading">Loading...</span>
+        </div>
+          
+       </div>
+        {% else %}
+            <div class="container">
+                <div class="ring"></div>
+                <div class="ring"></div>
+                <div class="ring"></div>
+                <span class="loading">Loading...</span>
+            </div>
+	  {% endif %}  
+	{% endwith %}
+</p>
+</body>
+    <script>
+        function showLoader() {
+            let intialLoader = document.getElementsByClassName("container");
+            (intialLoader)  && (intialLoader[0].style.display = "flex")
+            let secondLoaer = document.getElementsByClassName("d-none");
+            (secondLoaer)  && (secondLoaer[0].style.display = "flex");
+            let responseRow = document.getElementById("responseRow");
+            (responseRow) && (responseRow.innerHTML = " ");
+        }
+    </script>
+</html>
+
+
