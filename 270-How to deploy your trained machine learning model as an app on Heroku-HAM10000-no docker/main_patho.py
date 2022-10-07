@@ -36,6 +36,10 @@ scaler = MinMaxScaler()
 def getPrediction1(filename):
     print("Hi, I am inside Prediction function!")
 
+    import segmentation_models as sm
+    BACKBONE1 = 'resnet101'
+    preprocess_input1 = sm.get_preprocessing(BACKBONE1)
+    
     #filename = "A31P15X11 a.tif"
     #from keras.models import load_model
     model1 = load_model('model/binary_pathology_resnet_34_160_augmented.hdf5', compile=False)
@@ -94,9 +98,7 @@ def getPrediction1(filename):
             tiff.imwrite(img_path + '/image(' + str(count)+ ").tif", single_patch_img)
             print(count)
     
-    import segmentation_models as sm
-    BACKBONE1 = 'resnet34'
-    preprocess_input1 = sm.get_preprocessing(BACKBONE1)
+
 
     ###################### Read Images and Mask from the Patches folder ######       
 
