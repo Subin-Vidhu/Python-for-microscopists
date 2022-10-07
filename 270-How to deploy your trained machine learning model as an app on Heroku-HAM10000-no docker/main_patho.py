@@ -15,24 +15,23 @@ Vascular lesions (vas)
 Dermatofibroma (df)
 
 """
-import cv2
-import numpy as np
-from PIL import Image
-from sklearn.preprocessing import LabelEncoder
-from tensorflow.keras.models import load_model
-import numpy as np
-from matplotlib import pyplot as plt
-from patchify import patchify
-import tifffile as tiff
-import glob
-import cv2
 import os
+import numpy as np
+import nibabel as nib
 import matplotlib.pyplot as plt
-import matplotlib.image as mpimg
+from tensorflow.keras.utils import to_categorical
+import cv2
+from tqdm import tqdm
+import tensorflow as tf
+from tensorflow import keras
+import segmentation_models as sm
+from PIL import Image
+from tensorflow.keras.models import load_model
 
-from patchify import patchify, unpatchify
-from matplotlib import pyplot as plt
-import keras 
+sm.set_framework('tf.keras')
+
+from sklearn.preprocessing import MinMaxScaler
+scaler = MinMaxScaler()
 
 def getPrediction1(filename):
     print("Hi, I am inside Prediction function!")
