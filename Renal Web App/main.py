@@ -33,7 +33,7 @@ sm.set_framework('tf.keras')
 from sklearn.preprocessing import MinMaxScaler
 scaler = MinMaxScaler()
 
-def getPrediction1(filename):
+def getPrediction1(filename,slice_START, slice_END):
     print("Hi, I am inside Prediction function!")
 
     
@@ -77,8 +77,8 @@ def getPrediction1(filename):
     #append slices
 
     ###### for testing the performance of the model
-    for i in range(300, 600):
-
+    for i in range(slice_START, slice_END):
+        
         test_image_gt_one1 = ground_truth_array_test[i,:,:]
         test_image_gt_one_reshape1 = cv2.resize(test_image_gt_one1,(img_size,img_size), cv2.COLOR_BGR2RGB)
 

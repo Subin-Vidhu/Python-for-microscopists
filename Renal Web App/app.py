@@ -52,6 +52,11 @@ def index():
 @app.route('/', methods=['POST'])
 def submit_file():
     if request.method == 'POST':
+        int_features = [(x) for x in request.form.values()] #Convert string inputs to float.
+        features = list(request.form.values()) 
+        slice_START = int(features[0])
+        slice_END = int(features[1])
+        print("Features, slice_START, slice_END", list(request.form.values()), slice_START, type(slice_START), slice_END, type(slice_END))
         if 'file' not in request.files:
             flash('No file part')
             return redirect(request.url)
@@ -132,7 +137,7 @@ def submit_file():
                 os.rmdir(path)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'],filename))
             #getPrediction(filename)
-            label = getPrediction1(filename)
+            label = getPrediction1(filename,slice_START, slice_END)
             print("count", label)
             if((len(label)==4)):
                 flash(round(label[1]/1000, 2))
