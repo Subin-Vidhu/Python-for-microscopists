@@ -138,7 +138,7 @@ def submit_file():
             file.save(os.path.join(app.config['UPLOAD_FOLDER'],filename))
             #getPrediction(filename)
             label = getPrediction1(filename,slice_START, slice_END)
-            print("count", label)
+            #print("count", label)
             if((len(label)==4)):
                 flash(round(label[1]/1000, 2))
                 flash(round(label[2]/1000, 2))

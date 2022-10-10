@@ -70,13 +70,13 @@ def getPrediction1(filename,slice_START, slice_END):
         
 
 
-    x, y, z = test_image_gt_RC1__.header.get_zooms()
-    x, y = x * 2, y * 2
-
+    
     preprocessed = []
     #append slices
 
     ###### for testing the performance of the model
+    if slice_END > len(ground_truth_array_test):
+        slice_END = len(ground_truth_array_test)
     for i in range(slice_START, slice_END):
         
         test_image_gt_one1 = ground_truth_array_test[i,:,:]
@@ -99,23 +99,33 @@ def getPrediction1(filename,slice_START, slice_END):
         #plt.show()
     
 
+    x, y, z = test_image_gt_RC1__.header.get_zooms()
+    x, y = x * 2, y * 2
 
     preprocessed = np.transpose(np.array(preprocessed), [2, 1, 0])
     nifty = nib.Nifti1Image(preprocessed, np.diagflat([x, y, z, 1]), dtype=np.int16)
     nib.save(nifty, filename="static/Unpatchified_Result/predicted.nii")
     
     pred_path = "static/Unpatchified_Result/"
-    img  = nib.load(pred_path+"predicted.nii")
+    mask_pred  = nib.load(pred_path+"predicted.nii")
 
-    voxel_volume = np.prod(img.header.get_zooms())
-    data = np.asarray(img.dataobj)
-    count =  np.unique(data,  return_counts=True) 
-    print("COunt", count)
-    volume = {k: count[1][k] * voxel_volume for k in range(0,len(count[0]))}
+    x1,y1,z1 = mask_pred.header.get_zooms()
+    #x1,y1,z1 = x1/2,y1/2,z1
+    voxel_volume1 = np.prod(x1*y1*z1)
+    data1 = np.asarray(mask_pred.dataobj)
+    count1 =  np.unique(data1,  return_counts=True) 
+    print("Count", count1)
+    volume1 = {k: count1[1][k] * voxel_volume1 for k in range(0,len(count1[0]))}
+    
+    # voxel_volume = np.prod(img.header.get_zooms())
+    # data = np.asarray(img.dataobj)
+    # count =  np.unique(data,  return_counts=True) 
+    # print("COunt", count)
+    # volume = {k: count[1][k] * voxel_volume for k in range(0,len(count[0]))}
 
-    print("Volume", volume)
+    print("Volume", volume1)
         
-    return volume
+    return volume1
 
     #Volume = volume(img)
 
