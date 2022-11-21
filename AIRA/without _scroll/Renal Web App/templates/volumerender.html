@@ -1,0 +1,276 @@
+<html>
+    <head>
+    <title></title>
+    <meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />  
+    <meta name='viewport'
+        content='width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0' />
+    <meta name='description'
+        content='' />
+    <link href="{{ url_for('static',filename='volumecss/bootstrap.css') }}" rel='stylesheet' />
+    <link href="{{ url_for('static',filename='volumecss/bootstrap-responsive.css') }}" rel='stylesheet' />
+    <link type='text/css' rel='stylesheet' href="{{ url_for('static',filename='volumecss/xtheme/jquery.ui.css') }}" />
+    <link type='text/css' rel='stylesheet' href="{{ url_for('static',filename='volumecss/jquery.miniColors.css') }}" />
+    <link type='text/css' rel='stylesheet' href="{{ url_for('static',filename='volumecss/jquery.sidebar.css') }}" />
+    <link type='text/css' rel='stylesheet' href="{{ url_for('static',filename='volumecss/frontpage.css') }}" />
+    <link type='text/css' rel='stylesheet' href="{{ url_for('static',filename='volumecss/viewer.css') }}" />   
+    <script type='text/javascript' src="{{ url_for('static',filename='volumejs/jquery.js') }}"></script>
+    <script type='text/javascript' src="{{ url_for('static',filename='volumejs/jquery.ui.js') }}"></script>
+    <script type='text/javascript' src="{{ url_for('static',filename='volumejs/jquery.ui.slider.js') }}"></script>
+    <script type='text/javascript' src="{{ url_for('static',filename='volumejs/jquery.miniColors.js') }}"></script>
+    <script type='text/javascript' src="{{ url_for('static',filename='volumejs/jquery.filestyle.js') }}"></script>
+    <script type='text/javascript' src="{{ url_for('static',filename='volumejs/jquery.idTabs.js') }}"></script>
+    <script type='text/javascript' src="{{ url_for('static',filename='volumejs/jquery.sidebar.js') }}"></script>
+    <script type='text/javascript' src="{{ url_for('static',filename='volumejs/jquery.sidebar.volume.js') }}"></script>
+    <script type='text/javascript' src="{{ url_for('static',filename='volumejs/jquery.sidebar.mesh.js') }}"></script>
+    <script type='text/javascript' src="{{ url_for('static',filename='volumejs/jquery.sidebar.fibers.js') }}"></script>
+    <script type='text/javascript' src="{{ url_for('static',filename='volumejs/jquery.viewer.js') }}"></script>
+    <script type='text/javascript' src="{{ url_for('static',filename='volumejs/jquery.frontpage.js') }}"></script>
+    <script type='text/javascript' src="{{ url_for('static',filename='volumejs/dropbox.min.js') }}"></script>
+    <script type='text/javascript' src="{{ url_for('static',filename='volumejs/bootstrap-modal.js') }}"></script>
+    <script type='text/javascript' src="{{ url_for('static',filename='volumejs/x.controller.js') }}"></script>
+    <script type='text/javascript' src="{{ url_for('static',filename='volumejs/x.examples.js') }}"></script>
+    <script type='text/javascript' src="{{ url_for('static',filename='volumejs/x.rendering.js') }}"></script>
+    <script type='text/javascript' src="{{ url_for('static',filename='volumejs/x.scene.js') }}"></script>
+    <script type='text/javascript' src="{{ url_for('static',filename='volumejs/x.share.js') }}"></script>
+    <script type='text/javascript' src="{{ url_for('static',filename='volumejs/x.realtime.js') }}"></script>
+    <script type='text/javascript' src="{{ url_for('static',filename='volumejs/xtk.js') }}"></script> 
+    <script type='text/javascript' src="{{ url_for('static',filename='volumejs/draco/draco_decoder.js') }}"></script>
+    <script type='text/javascript' src="{{ url_for('static',filename='volumejs/xtkTrakoReader.js') }}"></script>    
+    <script type='text/javascript' src="{{ url_for('static',filename='volumejs/pusher.min.js') }}"></script>
+    
+    <!-- Google Analytics -->
+    <script type="text/javascript">
+    
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-33092072-1']);
+      _gaq.push(['_trackPageview']);
+      
+      (function() {
+    
+        var ga = document.createElement('script');
+        ga.type = 'text/javascript';
+        ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl'
+            : 'http://www') +
+            '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+    <!-- Google Analytics -->
+    <style>
+    body{
+    overflow-x: hidden;
+    overflow-y: hidden;
+    background-color: #0d2d3cf2;
+    }
+    .progress-bar-horizontal {
+        display: none;
+    }
+    .tabContent {
+        padding:15px;
+    }
+    </style>
+    </head>
+    <body id='body' class='webgl_enabled'>
+    
+        <!-- The frontpage -->
+        <div id='frontpage' style=''>
+    
+            <div id='content' class='container' >
+    
+                <div class='dropzone' style='color:#c5dde5;'>
+                    <span>Drop files here or </span><input id='filebutton' type='file'
+                        multiple onchange='selectfiles(this.files)' style='display: none;'></input><a
+                        class='btn btn-inverse btn-large' style='vertical-align: super;'
+                        onclick='javascript:document.getElementById("filebutton").click();'>Select
+                        files</a><br />
+                    <span style='font-size: 10px;color:#b6bcc3a1'> Your data stays on your
+                        computer. No upload required!</span><br />
+                
+    
+                </div>
+            </div>
+            <!-- /container -->
+    
+        </div>
+    
+
+        <!-- Drop note -->
+        <div id='drop-box-overlay'>
+            <h1>Drop files anywhere...</h1>
+        </div>
+    
+        <!-- The viewer -->
+        <div id='viewer' style='display: none;'>
+    
+            <ul class='navigation'>
+                <li id='volume' class='navigationLi'><div class='menu'>
+                        <div class='tabbox idTabs' id='volumetabs'>
+                            <div class='caption'>Tools</div>
+    
+                            <a href='#volumeTab' class='selected'>Tools</a>
+                             <a href='#labelmapTab' id='labelmapSwitch'
+                                style='margin-left: 50px;'>Labelmap</a>
+                            <div id='volumeTab' class='tabContent'>
+    
+    
+                                <div id='modes' style='width: 130px; float: left;display:none;'>
+                                    <div id='volumerendering'>
+                                        <img src="{{ url_for('static',filename='gfx/3d.png') }}" />
+                                    </div>
+                                    <div id='slicing'>
+                                        <img src="{{ url_for('static',filename='gfx/2d.png') }}"/>
+                                    </div>
+                                </div>
+                                <div id='opacity-label' class='menuLabel'
+                                    style='margin-top: 10px; float: left;'>3D Opacity</div>
+
+                                <div id='opacity-volume'
+                                    style='margin-left: 10px; margin-top: 10px; float: left;'></div>
+    
+                                <div id='windowlevel-label' class='menuLabel'
+                                    style='margin-top: 4px; float: left;'>Window/Level</div>
+                                <div id='windowlevel-volume'
+                                    style='margin-left: 10px; margin-top: 4px; float: left;'></div>
+    
+                                <div class='menuLabel' style='margin-top: 10px; float: left;'>Threshold</div>
+                                <div id='threshold-volume'
+                                    style='margin-left: 10px; margin-top: 10px; float: left;'></div>
+                                <div id='colors'
+                                    style=' margin-left: 6px; float: left;margin-top:10px;'>
+                                    <div id='opacity-label' class='menuLabel'
+                                    style='margin-top: 4px; float: left;'>Color</div>
+                                    <input id='fgColorVolume' type='hidden'
+                                        class='color-picker black' size='6' value='#ffffff' /> 
+                                    <input
+                                        id='bgColorVolume' type='hidden' class='color-picker black'
+                                        size='6' value='#000000' />
+                                </div>
+    
+                            </div>
+                            <div id='labelmapTab' class='tabContent' style='display: none'>
+    
+    
+                                <div id='visibility-labelmap' style='width: 130px; float: left;'>
+                                    <div class='menuLabel' style='margin-top: 4px; float: left;'>Show/Hide</div>
+                                    <div id='labelmapvisibility' class='eye show-icon'
+                                        style='margin-left: 6px;'></div>
+                                </div>
+    
+                                <div class='menuLabel' style='margin-top: 4px; float: left;'>Labelmap
+                                    Opacity</div>
+                                <div id='opacity-labelmap'
+                                    style='margin-left: 10px; margin-top: 4px; float: left;'></div>
+    
+    
+                            </div>
+                        </div>
+    
+                    </div></li>
+    
+                <li id='mesh' class='navigationLi' hidden><div class='menu'>
+                        <div class='pin'>
+                            <span class='ui-icon ui-icon-pin-w pinicon'></span>
+                        </div>
+                        <div class='tabbox idTabs'>
+                            <div class='caption'>MESH</div>
+    
+                            <a class='meshtabs selected'>Mesh 1</a>
+                            <div id='mesh1' class='tabContent'>
+    
+                                <div id='visibility-mesh'
+                                    style='width: 140px; float: left; margin-top: 2px;'>
+                                    <div class='menuLabel' style='margin-top: 4px; float: left;'>Show/Hide</div>
+                                    <div id='meshvisibility' class='eye show-icon'
+                                        style='margin-left: 6px;'></div>
+                                </div>
+    
+                                <input type='hidden' id='meshColor' class='color-picker black'
+                                    size='6' value='#0000ff' />
+    
+                                <div class='menuLabel' style='margin-top: 4px; float: left;'>Opacity</div>
+                                <div id='opacity-mesh'
+                                    style='margin-left: 10px; margin-top: 4px; float: left;'></div>
+    
+                                <div class='menuLabel'
+                                    style='margin-top: 4px; float: left; margin-top: 10px;'>Scalars</div>
+                                <div id='scalars-mesh' style='width: 160px; float: left;'>
+    
+                                    <select id='scalars-selector' style='margin-left: 6px'><option>Scalars
+                                            1</option></select> <input type='hidden' class='color-picker black'
+                                        id='scalarsMinColor' size='6' value='#00ff00' /> <input
+                                        type='hidden' id='scalarsMaxColor' class='color-picker black'
+                                        size='6' value='#ff0000' />
+                                </div>
+    
+    
+    
+                                <div class='menuLabel' style='margin-top: 4px; float: left;'>Scalars
+                                    Threshold</div>
+                                <div id='threshold-scalars'
+                                    style='margin-left: 10px; margin-top: 4px; float: left;'></div>
+    
+                            </div>
+    
+                        </div>
+                    </div></li>
+    
+                <li id='fibers' class='navigationLi' hidden><div class='menu'>
+                        <div class='pin'>
+                            <span class='ui-icon ui-icon-pin-w pinicon'></span>
+                        </div>
+                        <div class='tabbox idTabs'>
+                            <div class='caption'>FIBERS</div>
+    
+                            <a class='fiberstabs selected'>Fibers 1</a>
+    
+                            <div id='fibers1' class='tabContent'>
+    
+                                <div id='visibility-fibers'
+                                    style='width: 140px; float: left; margin-top: 2px;'>
+                                    <div class='menuLabel' style='margin-top: 4px; float: left;'>Show/Hide</div>
+                                    <div id='fibersvisibility' class='eye show-icon'
+                                        style='margin-left: 6px;'></div>
+                                </div>
+    
+                                <div class='menuLabel' style='margin-top: 4px; float: left;'>Fiber
+                                    Length Threshold</div>
+                                <div id='threshold-fibers'
+                                    style='margin-left: 10px; margin-top: 4px; float: left;'></div>
+    
+    
+                            </div>
+    
+                        </div>
+                    </div></li>
+    
+            </ul>
+<div id='3d' class='threeDRenderer'></div>
+        <div id='sliceAx' class='twoDRenderer' hidden>
+          <div id='blue_slider'></div>
+          <div id='ax_right_label' class='left_annotation'>R</div>
+          <div id='ax_left_label' class='right_annotation'>L</div>
+          <div id='ax_top_label' class='top_annotation'>A</div>
+          <div id='ax_bottom_label' class='bottom_annotation'>P</div>
+        </div>
+            <div id='sliceSag' class='twoDRenderer' hidden>
+                <div id='red_slider'></div>
+          <div id='sag_right_label' class='right_annotation'>P</div>
+          <div id='sag_left_label' class='left_annotation'>A</div>
+          <div id='sag_top_label' class='top_annotation'>S</div>
+          <div id='sag_bottom_label' class='bottom_annotation'>I</div>			
+            </div>
+            <div id='sliceCor' class='twoDRenderer' hidden>
+                <div id='green_slider'></div>
+          <div id='cor_right_label' class='left_annotation'>R</div>
+          <div id='cor_left_label' class='right_annotation'>L</div>
+          <div id='cor_top_label' class='top_annotation'>S</div>
+          <div id='cor_bottom_label' class='bottom_annotation'>I</div>			
+            </div>      
+        <div id='log'></div>
+        </div>
+    
+    </body>
+    </html>
+    

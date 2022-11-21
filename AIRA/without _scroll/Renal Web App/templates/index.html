@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="My Aramis - My Account">
+    <meta property="keywords"
+        content="Radiology AI PACS,DICOM viewer,radiology viewer,radiology companion,dicom web, dicom" />
+    <link rel="canonical" href="https://app.aramis.ai/" />
+    <title>Protos</title>
+    <link rel="icon" href="{{ url_for('static',filename='svg/protos.svg') }}">
+    <link rel="stylesheet" type="text/css"   href= "{{ url_for('static',filename='css/index.css') }}"/>
+    <script>
+    //     var username= "{{session['username']}}";
+    //     console.log("username",username);
+    //    if(username){
+    //      document.getElementById('data-displayname').innerHTML=username;
+    //    }
+
+
+    </script>
+</head>
+
+<body>
+
+    <div data-description>
+        <p>Aramis provide state of the art radiology and healthcare technology services to the industry at all access
+            points.</p>
+        <p>Our products include Ocular: high performance web based radiology DICOM viewer, quantSynth: quantitative MRI
+            and synthetic MR app and Radium: web based
+            radiology
+            information system.</p>
+    </div>
+    <div data-top-bar>
+        <div><a data-logo data-icon title="aramis" href="https://aramis.ai"
+                style="text-decoration: none; color: white;"></a>
+        </div>
+        <div data-profile>
+            <span data-displayname title="Display Name" id="data-displayname"><a title="Login" href="/userlogin"
+                    style="text-decoration: none; color: white;">Login</a></span><br>
+            <span data-client-id title="ID"></span><span data-client-name title="Client Name"></span>
+        </div>
+
+        <div data-my-aramis>Protos
+        </div>
+        <div><a data-icon data-icon-signin title="Signout" href="/signout"></a></div>
+    </div>
+    <div data-content-area>
+        <div data-session></div>
+        <div data-products>
+            <div data-product>
+                <div data-card-top>
+                    <div data-icon data-icon-aira></div>
+                    <div data-product-name>AIRA<sup style="font-size: 0.6em !important;">TM</sup></div>
+                </div>
+                <div data-product-description>
+                   Artificial Intelligence Renal Assessment <br>
+                </div>
+
+                <div data-actions>
+                    <!-- <a data-button href="site/ocular.html">Know More</a> -->
+                    <a data-button href="/home">Beta</a>
+                </div>
+
+            </div>
+
+
+            <div data-product>
+                <div data-card-top>
+                    <div data-icon data-icon-aira></div>
+                    <div data-product-name>xxxxxx</div>
+                </div>
+
+
+                <div data-product-description>
+                    xxxxxxxxxxxxxxxxxxxxxxxx <br>
+                </div>
+
+                <div data-actions>
+                    <a data-button href="">Launching soon...</a>
+
+                </div>
+
+            </div>
+
+
+            <div data-product>
+                <div data-card-top>
+                    <div data-icon data-icon-aira></div>
+                    <div data-product-name>xxxxxx</div>
+                </div>
+
+
+                <div data-product-description>
+                    xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+                </div>
+
+                <div data-actions>
+                    <a data-button href="">Launching soon...</a>
+                </div>
+
+            </div>
+
+
+
+            <div data-product>
+                <div data-card-top>
+                    <div data-icon data-icon-aira></div>
+                    <div data-product-name>xxxxxx</div>
+                </div>
+
+
+                <div data-product-description>
+                    xxxxxxxxxxxxxxxxxxxxxxxx <br>
+                </div>
+
+                <div data-actions>
+                    <a data-button href="">Launching soon...</a>
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+    </div>
+
+    <div data-aramis-cr>
+        Copyright © 2022 Aramis Imaging LLP
+    </div>
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,96 @@
+body{
+    background:rgb(27, 25, 25);
+    background: linear-gradient(rgb(8 29 27 / 100%), rgb(9 55 70 /96%)), url(../svg/protos.svg) no-repeat center;
+  }
+  [data-products] [data-product] {
+    box-shadow: 1px 3px 6px 6px #00000054;
+    width:65%;
+    background-color: #437d80;
+
+  } 
+  [data-description] {
+    grid-row: 3;
+    text-align: center;
+    font-size: 0.9em;
+    color: #849fb4;
+  }
+  [data-description]>p {
+    margin: 2px;
+  } 
+  [data-content-area] {
+    grid-row: 2;
+  }
+  [data-products] {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 100px;
+  }
+  [data-products] [data-product] {
+    margin-top: 34px;
+    background-color: black;
+    background-color: #101928;
+    background-color: #08282e;
+    min-width: 950px;
+    max-width: 90%;
+    box-shadow: 1px 3px 6px 3px #00000054;
+    min-height: 560px;
+    margin-left: 6px;
+    margin-right: 6px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  [data-products] [data-product]:hover {
+    box-shadow: 1px 3px 6px 6px #00000054;
+  } 
+  [data-product-description] {
+    padding: 24px;
+    text-align: center;
+    color:white;
+    margin-top: 30px;
+  } 
+  [data-aramis-cr] {
+    grid-row: 4;
+    padding: 8px;
+    text-align: center;
+    width: 100%;
+    box-sizing: border-box;
+    color: #686868;
+    color: #a0a0a0;
+    text-shadow: 0px 1px 0px rgb(0, 39, 117);
+    font-size: 11px;
+  }
+  [data-file]{
+    color:rgb(253, 253, 253);
+  }
+  .dflex{
+    display:flex;
+  }
+  @media screen and (min-device-width: 481px) and (max-device-width: 768px) { 
+
+    [data-products] [data-product] {
+      min-width: 600px;
+      max-width: 60%;
+      min-height:650px;
+    }
+  }
+  @media screen and (max-width: 481px) {
+
+    [data-products] [data-product] {
+      min-width: 300px;
+      max-width: 40%;
+      min-height:350px;
+    }
+
+  }
+  #watermark{
+    background: linear-gradient(rgb(8 29 27 / 100%), rgb(9 55 70 /96%)), url(../svg/protos.svg) no-repeat center;
+  }
+
+  @media screen and (min-width: 1200px) and (max-width:1440) {
+    [data-products] [data-product] {
+    min-height: 300px;
+    }
+
+  }

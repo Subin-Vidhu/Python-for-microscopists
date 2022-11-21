@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="icon" href="{{ url_for('static',filename='svg/protos.svg') }}">
+<title>Protos Renal Detector</title>
+<link rel="stylesheet" type="text/css"   href= "{{ url_for('static',filename='css/login.css') }}"/>
+</head>
+<body>
+	<div class="main">  
+		<div data-head="">
+                    <a href="/" data-svg="protos"></a>
+                    <div data-tile="">protos</div>
+        </div>	
+		<input type="checkbox" id="chk" aria-hidden="true">
+			<div class="signup">
+                <form data-login-form action="/user_login" style="min-height: 400px;" method="post">
+					<label for="chk" aria-hidden="true">Login</label>
+					<input type="text" name="name" placeholder="User name" required="">
+					<input type="password" name="pswd" placeholder="Password" required="">
+					<button>Login</button>
+					{% with messages = get_flashed_messages() %}
+					{% if messages %}
+					<div data-message>                  
+						{{ messages[0] }}                   
+					</div>
+					{% endif %}
+						{% endwith %}
+				</form>
+			</div>
+            <div class="login">             
+                <form data-signup-form action="/signup" method="post" autocomplete="off">
+					<label for="chk" aria-hidden="true">Sign up</label>
+					<input type="email" name="email" placeholder="Email" required="" autocomplete="off">
+					<input type="text" name="txt" placeholder="User name" required="" autocomplete="off">				
+					<input type="password" name="pswd" placeholder="Password" required="" autocomplete="new-password">
+					<button>Sign up</button>
+				</form>
+			</div>
+	</div>
+</body>
+</html>

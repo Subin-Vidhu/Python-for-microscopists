@@ -1,0 +1,484 @@
+<!doctype html>
+<html >
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta http-equiv='cache-control' content='no-cache'>
+<link rel="icon" href="{{ url_for('static',filename='svg/protos.svg') }}">
+<script type="text/javascript" src="{{ url_for('static',filename='js/jquery.min.js') }}"></script>
+<script type="text/javascript"  src= "{{ url_for('static',filename='js/jspdf.js') }}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jQuery.print/1.6.2/jQuery.print.min.js" integrity="sha512-t3XNbzH2GEXeT9juLjifw/5ejswnjWWMMDxsdCg4+MmvrM+MwqGhxlWeFJ53xN/SBHPDnW0gXYvBx/afZZfGMQ=="
+ crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<link rel="stylesheet" href="{{ url_for('static',filename='css/bootstrap.min.css') }}">
+<script type="text/javascript"  src=" {{ url_for('static',filename='js/bootstrap.min.js') }}"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css"   href= "{{ url_for('static',filename='css/papaya.css') }}"/>
+<script type="text/javascript"  src= "{{ url_for('static',filename='js/papaya.js') }}"></script>
+<link rel="stylesheet" type="text/css" href= "{{ url_for('static',filename='css/protos.css') }}"/>
+<title>AIRA</title>
+   <script>
+    var userid= "{{session['userid']}}";
+    var params=[];
+    params["images"]=["static/images/"+userid+"/img.nii?"+Date.now()];
+    params["static/Results/"+userid+"/mask.nii?"+Date.now()] ;
+    params["radiological"]=true;
+    params["showOrientation"]=true;
+    params["expandable"]=true;   
+    var params1=[];
+    params1["images"]=["static/Results/"+userid+"/mask.nii?"+Date.now()];
+    params1["radiological"]=true;
+    params1["showOrientation"]=true;
+    params1["expandable"]=true;
+    papaya.Container.syncViewersWorld=true;
+    $(document).ready(function() {
+        $('#tbName').on('input change', function() {
+            if($(this).val() != '') {
+                $('#submit').prop('disabled', false);
+            } else {
+                $('#submit').prop('disabled', true);
+            }
+            $('select').prop("disabled", false);
+        });
+
+        var doc = new jsPDF(); 
+var specialElementHandlers = { 
+    '#editor': function (element, renderer) { 
+        return true; 
+    } 
+};
+$('#exportsub').click(function () { 
+    doc.fromHTML($('#content').html(), 15, 15, { 
+        'width': 190, 
+            'elementHandlers': specialElementHandlers 
+    }); 
+    //doc.rect(10, 10, doc.internal.pageSize.width - 20, doc.internal.pageSize.height - 20, 'S');
+    ; 
+    setTimeout(function() {
+      doc.save('Report.pdf')
+    }, 1000);
+    });
+    });
+    function expandableview()
+    {
+      var left = (screen.width - 1200) / 2;
+      var top = (screen.height - 700) / 4;
+      window.open("expandview","","toolbar=yes,scrollbars=yes,location=no,resizable=yes,height=700,width=1200,top=" + top + ", left=" + left);
+    }
+    function interpolation()
+    {
+      var left = (screen.width - 1200) / 2;
+      var top = (screen.height - 650) / 4;
+      window.open("interpolation","","toolbar=yes,scrollbars=yes,location=no,resizable=yes,height=650,width=1200,top=" + top + ", left=" + left);
+    }
+    function showinput(id){
+      var value=$("#find_"+id).text();
+      $("#find_"+id).css('display','none');
+      $("#finput_"+id).css('display','inline-block');
+      $("#finput_"+id).val(value);
+      $("#finput_"+id).focus();
+
+    }
+    function showeditres(id){
+      var value=$("#finput_"+id).val();
+      $("#finput_"+id).css('display','none');
+      $("#find_"+id).css('display','inline-block');
+      $("#find_"+id).text(value);
+      $("#printres_"+id).text(value);
+    }
+    function closeInfobar(){
+
+      $("#infoicon").css('display','inline-block');
+      $("#infobar").css('display','none');
+    }
+    function showInfobar(){
+    $("#infoicon").css('display','none');
+    $("#infobar").css('display','inline-block');
+    }
+    function printDiv() 
+    {
+
+      var divToPrint=document.getElementById('content');
+
+      var newWin=window.open('','Print-Window');
+
+      newWin.document.open();
+
+      newWin.document.write('<html><body onload="window.print()">'+divToPrint.innerHTML+'</body></html>');
+
+      newWin.document.close();
+
+      setTimeout(function(){newWin.close();},10);
+
+    }
+  
+   </script>
+</head>
+<body class="nephros">
+    <div class="">
+    <div class="headerbar row">
+        <a href="javascript:void(0);" class="icon" data-toggle="modal" data-target="#exampleModal" id="hamburger">
+            <img src="{{ url_for('static',filename='svg/hamburger.svg') }}">
+          </a>
+          <a  class="headerbar-right logout" href="/logout"><img src="{{ url_for('static',filename='svg/logout.svg') }}"></a> 
+          <a  class="plogo headerbar-right" href="/home"><img src="{{ url_for('static',filename='svg/protoslogo.svg') }}"></a>    
+      </div>
+
+<div class="">
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+{% if messages[0] == 0 and messages[1] == 0 and messages[2] == 0 %} 
+{% else %}
+<div class="col-md-6">
+    <div class="back-g" style="height:50%;width:55%">
+        <div class="papaya"  data-params="params" style="width:300px;height:300px;"></div>
+    </div>
+    <div class="back-g" style="height:50%;width:55%">
+    <div class="papaya" data-params="params1" style="width:300px;height:300px;"></div>
+    </div>
+      <div id="content"  class="border" hidden>
+        <div class="col-lg-12">
+          <div class="col-lg-6">
+        <div class="airapdf">
+        <!-- <div><h1 style="margin-left:500px">AIRA</h1></div>  -->
+        <img src="{{ url_for('static',filename='svg/protos.PNG') }}" style="width:30px;height:30px;margin-left:800px">
+        
+        </div>
+      </div>
+     <div class="col-lg-6">
+        <!-- <p style="margin-left: 850px;font-weight: bold;">Aramis Imaging LLP</p>
+          <p style="margin-left: 850px;font-size: 12px;">  Advanced Radiology and Medical Innovations</p>
+          <p style="margin-left: 850px;font-size: 12px;"> 5th Floor, CDAC, ACE, Technopark,</p>
+          <p style="margin-left: 850px;font-size: 12px;">Trivandrum. PIN : 695581</p>
+          <p style="margin-left: 850px;font-size: 12px;"> Kerala, India</p> -->
+        </div> 
+     
+      </div>
+        <div><h1 style="margin-left:500px">AIRA</h1></div> 
+        <h1>Renal Report</h1>
+        <h2>Right Kidney</h2>
+        <p>Parenchymal Volume: <span id="printres_1">{{ messages[2] }}</span> ml</p>
+        <p>Maximum Cranio-caudal length: <span id="printres_2">{{ messages[4] }}</span> mm</p>
+        <p>Parenchymal thickness: <span id="printres_3">___________</span> ml</p>
+
+        {% if messages[6]  %}
+          {% for rightcalculi in messages[6] %}
+          {% set outer_loop = loop %}
+            {% for righthu in messages[8] %}
+            {% set inner_loop = loop %}
+              {% for righthd in messages[10] %}
+              {% if outer_loop.index0 == loop.index0 == inner_loop.index0  %}
+
+        <p>Calculi  {{ loop.index }}</p>
+        <li>Maximum Dimension: <span>{{ rightcalculi }} mm</span></li>
+        <li>Average HU: <span>{{ righthu }} HU</span> </li>
+        <li>Volume: <span>{{ righthd }} ml</span></li>
+
+              {% endif %} 
+            {% endfor %}
+          {% endfor %}
+        {% endfor %} 
+        {% else %}
+        <p>No calculi found</p>
+      {% endif %}
+        <br>
+        <h2>Left Kidney</h2>
+        <p>Parenchymal Volume: <span id="printres_4">{{ messages[1] }}</span> ml</p>
+        <p>Maximum Cranio-caudal length:<span id="printres_5">{{ messages[5] }}</span> mm</p>
+        <p>Parenchymal thickness:<span id="printres_6"> ___________</span> ml</p>
+
+      {% if messages[7]  %}
+          {% for leftcalculi in messages[7] %} 
+          {% set outer_loop = loop %}
+            {% for leftu in messages[9] %}
+            {% set inner_loop = loop %}
+              {% for leftd in messages[11] %}
+              {% if outer_loop.index0 == loop.index0 == inner_loop.index0   %} 
+
+        <p>Calculi {{ loop.index }}</p>
+        <li>Maximum Dimension: <span>{{ leftcalculi }} mm</span></li>
+        <li>Average HU: <span>{{ leftu }} HU</span></li>
+        <li>Volume: <span>{{ leftd }} ml</span> </li>
+
+              {% endif %} 
+            {% endfor %}
+          {% endfor %}
+        {% endfor %}
+        {% else %}
+        <p>No calculi found</p>
+      {% endif %}
+        </div>
+      <div id="page"></div>         
+</div>
+<div class="col-md-5">
+    <div data-ui-card="head">
+        <div class="dflex">
+        <h2 style="color: #c8e1f0;margin-top: -7px;">Findings</h2>
+        <div class="btns">
+            <button class="fa fa-expand expview btn" onclick="expandableview()"  title="Expandable view"></button>
+            <button class="fa fa-object-group interpol btn"  title="Interpolation" onclick="interpolation()"></button>
+            <a class="fa fa-download downloadbtn btn" href='{{ url_for("static",filename=messages[3] ) }}' download title="Download nifti file"></a>  
+            <button class="fa fa-cube view3d btn"  title="3d view" data-toggle="modal" data-target="#volumerender"></button>          
+            <button class="fa fa-file-pdf-o downloadpdf btn"  title="Download Report" id="exportsub"  ></button>       
+        </div>
+    </div>
+    </div>
+    <div data-ui-card style="color: #c8e1f0;overflow-y: auto;height:360px" class="p-scroll">
+    <h3 style="font-size:20px;margin-top: -1px;margin-bottom: 16px;">Right Kidney</h3>
+    <div class="dflex"><span class="spancl">Parenchymal Volume: </span><p data-pslice><span data-span id="find_1" >  {{ messages[2] }} </span><input type ="text" data-input id="finput_1" onblur="showeditres(1)"><span data-span> ml</span></p> </div>    
+    <div class="dflex"><span  class="spancl">Maximum Cranio-caudal length:</span><p data-pslice><span data-span id="find_2" >{{ messages[4] }}</span> <input type ="text" data-input id="finput_2" onblur="showeditres(2)"><span data-span> mm </span></p></div>
+    <div class="dflex"> <span  class="spancl">Parenchymal thickness: </span><p data-pslice><span data-span id="find_3">  ______ </span><input type ="text" data-input id="finput_3"><span data-span onblur="showeditres(3)"> ml </span></p></div>
+    {% if messages[6]  %}
+    <div class="panel-group" id="accordion" style="margin-left: 10px;">     
+      {% for rightcalculi in messages[6] %}
+      {% set outer_loop = loop %}
+        {% for righthu in messages[8] %}
+        {% set inner_loop = loop %}
+          {% for righthd in messages[10] %}
+          {% if outer_loop.index0 == loop.index0 == inner_loop.index0  %}
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h4 class="panel-title">
+              <a data-toggle="collapse" data-parent="#accordion" href="#collapse{{ loop.index }}">Calculi {{ loop.index }}</a>
+            </h4>
+          </div>
+          <div id="collapse{{ loop.index }}" class="panel-collapse collapse">
+            <div class="panel-body" style="color: #b8bfbb;">
+              <div class="dflex"><li>Maximum Dimension: <span style="color:rgb(65 201 215);">{{ rightcalculi }} mm</span></li></div>
+              <div class="dflex"><li>Average HU: <span style="color:rgb(65 201 215);">{{ righthu }} HU</span> </li></div>
+              <div class="dflex"><li>Volume: <span style="color:rgb(65 201 215);">{{ righthd }} ml</span></li></div>
+        </div>
+          </div>
+        </div>
+              {% endif %} 
+            {% endfor %}
+          {% endfor %}
+        {% endfor %}   
+      </div> 
+      {% else %}
+      <div class="panel-group" id="accordion0" style="margin-left: 10px;"> 
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4 class="panel-title">
+            <a style="pointer-events:none">No Calculi Found</a>
+          </h4>
+        </div>
+        </div>
+      </div>
+      {% endif %}
+    
+    
+    </div>
+    <div data-ui-card style="color: #c8e1f0;overflow-y: auto;height:360px" class="p-scroll">
+    <h3 style="font-size:20px;margin-top: -1px;margin-bottom: 16px;">Left Kidney</h3>
+    <div class="dflex"><span class="spancl">Parenchymal Volume: </span><p data-pslice><span data-span id="find_4">  {{ messages[1] }}</span> <input type ="text" data-input id="finput_4" onblur="showeditres(4)"> <span data-span>ml</span></p></div>    <!--ondblclick="showinput(4)" title="Double tap to edit"-->
+    <div class="dflex"><span  class="spancl">Maximum Cranio-caudal length:</span><p data-pslice><span data-span id="find_5" >{{ messages[5] }}</span> <input type ="text" data-input id="finput_5" onblur="showeditres(5)"><span data-span> mm </span></p></div>
+    <div class="dflex"> <span  class="spancl">Parenchymal thickness: </span><p data-pslice><span data-span id="find_6">  ______ </span><input type ="text" data-input id="finput_6" onblur="showeditres(6)"><span data-span> ml </span></p></div>
+    {% if messages[7]  %}
+    <div class="panel-group" id="accordion1" style="margin-left: 10px;">
+      {% for leftcalculi in messages[7] %} 
+      {% set outer_loop = loop %}
+      {% for leftu in messages[9] %}
+      {% set inner_loop = loop %}
+      {% for leftd in messages[11] %}
+      {% if outer_loop.index0 == loop.index0 == inner_loop.index0   %} 
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h4 class="panel-title">
+              <a data-toggle="collapse" data-parent="#accordion1" href="#collapses{{ loop.index }}">Calculi {{ loop.index }}</a>
+            </h4>
+          </div>
+          <div id="collapses{{ loop.index }}" class="panel-collapse collapse">
+            <div class="panel-body" style="color: #b8bfbb;">
+              <div class="dflex"><li>Maximum Dimension: <span style="color:rgb(65 201 215);">{{ leftcalculi }} mm</span></li></div>
+              <div class="dflex"><li>Average HU: <span style="color:rgb(65 201 215);">{{ leftu }} HU</span></li></div>
+              <div class="dflex"> <li>Volume: <span style="color:rgb(65 201 215);">{{ leftd }} ml</span></li></div>
+        </div>
+          </div>
+        </div>
+        {% endif %} 
+        {% endfor %}
+        {% endfor %}
+        {% endfor %}
+      </div>
+      {% else %}
+      <div class="panel-group" id="accordion2" style="margin-left: 10px;"> 
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h4 class="panel-title">
+              <a style="pointer-events:none">No Calculi Found</a>
+            </h4>
+          </div>
+          </div>
+        </div>
+      {% endif %} 
+    </div>
+</div>
+<div class="col-md-1"></div>
+<!-- <a data-resinfo  id="infoicon" onclick="showInfobar()" title="Info"><i class="fa fa-info-circle"></i></a>
+<div data-infobar id="infobar"><p class="info-bar-close-btn" onclick="closeInfobar()">+</p>
+  <div style="margin-top:16px;"><p>Double tap the result to edit </p></div>
+</div> -->
+</div>
+{% endif %} 
+<div class="row" data-row>
+    <div class="load-bg d-none">
+        <div class="container_load d-none">
+            <div class="ring"></div>
+            <div class="ring"></div>
+            <div class="ring"></div>
+            <span class="loading">Loading...</span>
+        </div>
+      </div>    
+   </div>
+{% else %}
+<div class="load-bg">
+    <div class="container_load">
+        <div class="ring"></div>
+        <div class="ring"></div>
+        <div class="ring"></div>
+        <span class="loading">Loading...</span>
+    </div>
+</div>
+{% endif %} 
+{% endwith %}
+
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+{% if messages[0] == 0 and messages[1] == 0 and messages[2] == 0 %} 
+<div class="col-md-1"></div>
+<div class="col-md-5">
+    <div class="back-g">
+        <div class="papaya"  data-params="params"></div>
+    </div>
+</div>
+<div class="col-md-5">
+    <div data-ui-card="head">
+        <h2 style="color: #c8e1f0;margin-top: -7px;">Findings</h2>
+        </div>
+        <div data-ui-card style="color:#c8e1f0;text-align:center;">The selected slices doesn't contain kidney.</div>
+</div>
+{% endif %}
+<div class="row" data-row>
+    <div class="load-bg d-none">
+        <div class="container_load d-none">
+            <div class="ring"></div>
+            <div class="ring"></div>
+            <div class="ring"></div>
+            <span class="loading">Loading...</span>
+        </div>
+      </div>    
+   </div>
+{% else %}
+<div class="load-bg">
+    <div class="container_load">
+        <div class="ring"></div>
+        <div class="ring"></div>
+        <div class="ring"></div>
+        <span class="loading">Loading...</span>
+    </div>
+</div>
+<div class="col-md-1"></div>
+{% endif %}  
+{% endwith %} 
+
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+{% else %}
+<div class="col-lg-12">    
+  <div class="center">
+      <div class="papaya"  data-params="params"></div>
+  </div>
+  </div>
+  {% endif %}  
+{% endwith %} 
+
+<div class="modal left fade" id="exampleModal" tabindex="" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+            <div class="modal-body">
+                <div class="nav flex-sm-column flex-row">            
+                    <form method="post" action="/view" class="dflex" enctype="multipart/form-data"  id="viewform" >
+                        <dl>
+                        <p data-file>
+                            <input type="file" name="file" autocomplete="off" required  id="tbName" accept=".gz,.nii,.dcm,.zip,.IMA,.rar" multiple="multiple">                          
+                        </p>
+                        </dl>
+                        <p>
+                            <button name="submit" id="submit" disabled="disabled" data-btns onclick="showLoader()">View</button>
+                        </p>                       
+                    </form>
+                    <form method="post" action="/run" class="slicfrm" enctype="multipart/form-data" autocomplete="off" id="sliceform" onsubmit="slicerun(event);">
+                        <input data-sliceno type="number" name="START" placeholder="Start Slice" required id="startslice" min="0" />
+                        <input data-sliceno type="number" name="STOP" placeholder="End Slice" required id="endslice" min="1"/>
+                        <button  data-btns>Run</button>
+                    </form>                 
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="volumerender" tabindex="" role="dialog" aria-labelledby="volumerender" aria-hidden="true" style="padding-top: 80px;margin-right:280px">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content" style="width:1000px;background-color: #0c4352;">
+            <div class="modal-header">
+              <h3 class="modal-title" style="color: #c5dde5; margin-left: 10px;">3D </h3>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                 
+                  <span aria-hidden="true">&times;</span>
+                </button>
+
+              </div>
+            <div class="modal-body" style="height:700px;">
+                <iframe src="volume_render" style="height:650px;width:974px;overflow-y:hidden;overflow-x:hidden;border:none;" title="3d view"></iframe>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+</body>
+    <script>
+function slicerun(e) {
+    let startslice =document.getElementById("startslice").value;
+    let endslice =document.getElementById("endslice").value;
+    startslice=startslice?startslice :0;
+    endslice=endslice?endslice :0;
+    if((parseInt(startslice)==0 && parseInt(endslice)>0 )){  
+        document.getElementById("sliceform").submit();
+        showLoader();
+        let responseRow = document.getElementById("responseRow");
+        (responseRow) && (responseRow.innerHTML = " ");
+    }
+    else if((parseInt(startslice) && parseInt(endslice) )){    
+        if((parseInt(endslice)>parseInt(startslice))){
+            document.getElementById("sliceform").submit();
+            showLoader();
+            let responseRow = document.getElementById("responseRow");
+            (responseRow) && (responseRow.innerHTML = " ");
+
+                
+        } else {
+            alert("End Slice must be greater than Start slice"); 
+            e.preventDefault();
+        }
+    }
+    }
+function showLoader() {
+    let intialLoader = document.getElementsByClassName("container_load");
+    (intialLoader)  && (intialLoader[0].style.display = "flex");
+    let intialLoaderBg = document.getElementsByClassName("load-bg");
+    (intialLoaderBg)  && (intialLoaderBg[0].style.display = "block");
+    let secondLoaer = document.getElementsByClassName("d-none");
+    (secondLoaer)  && (secondLoaer[0].style.display = "flex");
+}
+    </script>
+</html>

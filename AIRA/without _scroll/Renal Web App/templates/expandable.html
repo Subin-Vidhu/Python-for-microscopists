@@ -1,0 +1,104 @@
+<!doctype html>
+<html >
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta http-equiv='cache-control' content='no-cache'>
+<link rel="icon" href="{{ url_for('static',filename='svg/protos.svg') }}">
+<script type="text/javascript" src="{{ url_for('static',filename='js/jquery.min.js') }}"></script>
+<script type="text/javascript"  src= "{{ url_for('static',filename='js/jspdf.js') }}"></script>
+<link rel="stylesheet" href="{{ url_for('static',filename='css/bootstrap.min.css') }}">
+<script type="text/javascript"  src=" {{ url_for('static',filename='js/bootstrap.min.js') }}"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css"   href= "{{ url_for('static',filename='css/papaya.css') }}"/>
+<script type="text/javascript"  src= "{{ url_for('static',filename='js/papaya.js') }}"></script>
+<link rel="stylesheet" type="text/css" href= "{{ url_for('static',filename='css/protos.css') }}"/>
+<title>AIRA | Expandable View</title>
+   <script>
+    var userid= "{{session['userid']}}";
+    var params=[];
+    params["images"]=["static/images/"+userid+"/img.nii?"+Date.now()];
+    params["static/Results/"+userid+"/mask.nii?"+Date.now()] = {"min": 0, "max": 4, "lut": "Gold", "alpha": 1};
+    params["radiological"]=true;
+    params["showOrientation"]=true; 
+    var params1=[];
+    params1["images"]=["static/Results/"+userid+"/mask.nii?"+Date.now()];
+    params1["radiological"]=true;
+    params1["showOrientation"]=true;
+    papaya.Container.syncViewersWorld=true;
+    
+
+    $(document).ready(function() {
+        $('#tbName').on('input change', function() {
+            if($(this).val() != '') {
+                $('#submit').prop('disabled', false);
+            } else {
+                $('#submit').prop('disabled', true);
+            }
+            $('select').prop("disabled", false);
+        });
+
+        var doc = new jsPDF(); 
+var specialElementHandlers = { 
+    '#editor': function (element, renderer) { 
+        return true; 
+    } 
+};
+$('#exportsub').click(function () { 
+    doc.fromHTML($('#content').html(), 15, 15, { 
+        'width': 190, 
+            'elementHandlers': specialElementHandlers 
+    }); 
+    doc.save('Report.pdf'); 
+    });
+    });
+
+   </script>
+   <style>
+ 
+    table.report-container {
+        page-break-after:always;
+    }
+    .tempbody{
+    font-family:Times New Roman;
+    width:100%;
+    font-size:12px;
+    }
+  </style>
+</head>
+<body class="nephros">
+    <div class="">
+    <div class="headerbar row">
+          <!-- <a  class="headerbar-right logout" href="/logout"><img src="{{ url_for('static',filename='svg/logout.svg') }}"></a>  -->
+          <a  class="plogo headerbar-right" href="/home"><img src="{{ url_for('static',filename='svg/protoslogo.svg') }}"></a>    
+      </div>
+
+<div class="col-lg-12"> 
+<div class="col-lg-6">
+</div>
+<div class="col-lg-6">
+</div>
+</div>
+<div class="col-lg-6">
+    <div class="back-g">
+    <div class="papaya"  data-params="params"></div>
+    </div>
+</div>
+<div class="col-lg-6">
+
+      <div class="back-g" >
+      <div class="papaya" data-params="params1"></div>
+      </div>
+
+    
+</div>
+
+
+</div>
+
+</body>
+
+</html>
