@@ -1,0 +1,42 @@
+<!doctype html>
+<html >
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta http-equiv='cache-control' content='no-cache'>
+  <title>AIRA | Overlay</title>
+  <link rel="icon" href="{{ url_for('static',filename='svg/protos.svg') }}">
+  <script type="text/javascript" src="{{ url_for('static',filename='js/jquery.min.js') }}"></script>
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/bootstrap.min.css') }}">
+  <script type="text/javascript"  src=" {{ url_for('static',filename='js/bootstrap.min.js') }}"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css"   href= "{{ url_for('static',filename='css/papaya.css') }}"/>
+  <script type="text/javascript"  src= "{{ url_for('static',filename='js/interpolation.js') }}"></script>
+  <link rel="stylesheet" type="text/css"   href= "{{ url_for('static',filename='css/protos.css') }}"/>
+  
+   <script>
+    var params=[];
+    var userid= "{{session['userid']}}";
+    params["images"]=["static/images/"+userid+"/img.nii?"+Date.now(),"static/Results/"+userid+"/mask.nii?"+Date.now()];    
+    params["showOrientation"]=true;
+    params["radiological"]=true;   
+   </script>
+ 
+</head>
+<body class="nephros">
+    <div class="headerbar row">
+        <!-- <a  class="headerbar-right logout" href="/logout"><img src="{{ url_for('static',filename='svg/logout.svg') }}"></a>  -->
+        <a  class="plogo headerbar-right" href="/home"><img src="{{ url_for('static',filename='svg/protoslogo.svg') }}"></a>    
+    </div>
+<div class="col-lg-12">
+<div class="center">
+<div class="papaya"  data-params="params"></div>
+</div>
+</div>
+</body>
+</html>
+
+

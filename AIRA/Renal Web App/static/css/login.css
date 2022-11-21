@@ -1,0 +1,179 @@
+body{
+	margin: 0;
+	padding: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-height: 100vh;
+	font-family: 'Jost', sans-serif;
+	background-image: linear-gradient(to bottom right, #081d1b, #093746); 
+}
+
+@font-face {
+    font-family: 'Jost';
+    font-style: normal;
+    font-weight: 500;
+    font-display: swap;
+    src: url(https://fonts.gstatic.com/s/jost/v14/92zPtBhPNqw79Ij1E865zBUv7myRJTVFNIg8mg.woff2) format('woff2');
+    unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+  }
+
+  @font-face {
+    font-family: 'Jost';
+    font-style: normal;
+    font-weight: 500;
+    font-display: swap;
+    src: url(https://fonts.gstatic.com/s/jost/v14/92zPtBhPNqw79Ij1E865zBUv7myRJTVPNIg8mg.woff2) format('woff2');
+    unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+  }
+
+  @font-face {
+    font-family: 'Jost';
+    font-style: normal;
+    font-weight: 500;
+    font-display: swap;
+    src: url(https://fonts.gstatic.com/s/jost/v14/92zPtBhPNqw79Ij1E865zBUv7myRJTVBNIg.woff2) format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+  }
+.main{
+	width: 350px;
+    height: 530px;
+    overflow: hidden;
+    background-image: linear-gradient(to bottom right, #081d1b, #093746);
+    border-radius: 10px;
+	box-shadow: 5px 2px 5px 5px #16161645;
+}
+#chk{
+	display: none;
+}
+.signup{
+	position: relative;
+    width: 100%;
+    height: 100%;
+	margin-top: -73px;
+}
+label{
+	color: #fff;
+	font-size: 1.6em;
+	justify-content: center;
+	display: flex;
+	margin: 60px;
+	cursor: pointer;
+	transition: .5s ease-in-out;
+}
+.login input{
+	width: 60%;
+	height: 20px;
+	background: #082a31 !important;
+	justify-content: center;
+	display: flex;
+	margin: 20px auto;
+	padding: 10px;
+	border: none;
+	outline: none;
+	border-radius: 5px;
+	color:white !important;
+}
+.signup input{
+	width: 60%;
+	height: 20px;
+	justify-content: center;
+	display: flex;
+	margin: 20px auto;
+	padding: 10px;
+	border: none;
+	outline: none;
+	border-radius: 5px;
+	background-color: #0b4d5a;
+	color:white !important;
+}
+button{
+	width: 32%;
+	height: 40px;
+	margin: 10px auto;
+	justify-content: center;
+	display: block;
+	color: #fff;
+	background-image: linear-gradient(to bottom left, #0e8aa7, #00171c);
+	font-size: 1em;
+	font-weight: bold;
+	margin-top: 20px;
+	outline: none;
+	border: none;
+	border-radius: 5px;
+	transition: .2s ease-in;
+	cursor: pointer;
+}
+button:hover{
+	background-image: linear-gradient(to bottom right,#0e8aa7, #00171c);
+}
+.login{
+	height: 460px;
+	background: #0b4d5a;
+	border-radius: 60% / 10%;
+	transform: translateY(-180px);
+	transition: .8s ease-in-out;
+	margin-top: -42px;
+}
+.login label{
+	color: #d0e6eb;
+	transform: scale(.6);
+}
+
+#chk:checked ~ .login{
+	transform: translateY(-500px);
+}
+#chk:checked ~ .login label{
+	transform: scale(1);
+	padding-top: 5px;	
+}
+#chk:checked ~ .signup label{
+	transform: scale(.6);
+}
+[data-head] {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 4px;
+}
+[data-svg="protos"] {
+    background-image: url(../../static/svg/protos.svg);
+    height: 85px;
+    width: 66px;
+    aspect-ratio: 1;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    filter: drop-shadow(2px 4px 6px black);
+    font-size: 50px;
+    display: block;
+}
+[data-tile] {
+    vertical-align: top;
+    background-image: linear-gradient(289deg, #c1c1c1, #0bb9e1);
+    text-shadow: none;
+    filter: drop-shadow(2px 4px 6px black);
+    background-size: 100%;
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 3.5em;
+    margin-top: -33px;
+}
+[data-message] {
+    margin: 5mm 4mm 2mm 4mm;
+    background-color: rgb(7 33 38);
+    padding: 2mm;
+    border-radius: 2mm;
+    text-align: center;
+    box-shadow: inset 1mm 1mm 2mm 0mm rgb(0 0 0 / 16%);
+    border: 1px solid rgba(77, 8, 101, 0.07);
+    color: #95c6d1;
+}
+::placeholder { 
+  color: rgb(206, 206, 206);
+  opacity: 1;
+}
+input:-webkit-autofill{
+    -webkit-text-fill-color: #fff !important;
+	-webkit-box-shadow: 0 0 0 30px #0b4d5a inset !important;
+}

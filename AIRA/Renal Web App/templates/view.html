@@ -1,0 +1,149 @@
+<!doctype html>
+<html >
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta http-equiv='cache-control' content='no-cache'>
+  <title>AIRA</title>
+  <link rel="icon" href="{{ url_for('static',filename='svg/protos.svg') }}">
+  <script type="text/javascript" src="{{ url_for('static',filename='js/jquery.min.js') }}"></script>
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/bootstrap.min.css') }}">
+  <script type="text/javascript"  src=" {{ url_for('static',filename='js/bootstrap.min.js') }}"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css"   href= "{{ url_for('static',filename='css/papaya.css') }}"/>
+  <script type="text/javascript"  src= "{{ url_for('static',filename='js/papaya.js') }}"></script>
+  <link rel="stylesheet" type="text/css"   href= "{{ url_for('static',filename='css/protos.css') }}"/>
+  
+   <script>
+    var params=[];
+    var userid= "{{session['userid']}}";
+    params["images"]=["static/images/"+userid+"/img.nii?"+Date.now()];    
+    params["showOrientation"]=true;
+    params["radiological"]=true;   
+    params["expandable"]=true; 
+    $(document).ready(function() {
+        $('#tbName').on('input change', function() {
+            if($(this).val() != '') {
+                $('#submit').prop('disabled', false);
+            } else {
+                $('#submit').prop('disabled', true);
+            }
+        });
+    });
+
+   </script> 
+</head>
+<body class="nephros">
+    <div class="">
+    <div class="headerbar row">
+        <a href="javascript:void(0);" class="icon" data-toggle="modal" data-target="#exampleModal" id="hamburger">
+            <img src="{{ url_for('static',filename='svg/hamburger.svg') }}">
+          </a>
+          <a  class="headerbar-right logout" href="/logout"><img src="{{ url_for('static',filename='svg/logout.svg') }}"></a> 
+          <a  class="plogo headerbar-right" href="/home"><img src="{{ url_for('static',filename='svg/protoslogo.svg') }}"></a>
+      </div>
+<div class="col-lg-12">  
+    <input type="hidden" value="" id="resultinput">  
+<div class="center">
+    <div class="papaya"  data-params="params"></div>
+</div>
+</div>
+<div class="col-lg-6">
+	{% with messages = get_flashed_messages() %}
+	  {% if messages %}
+        <div class="load-bg d-none">
+            <div class="container_load d-none">
+                <div class="ring"></div>
+                <div class="ring"></div>
+                <div class="ring"></div>
+                <span class="loading">Loading...</span>
+            </div>
+          </div>      
+       </div>    
+        {% else %}
+            <div class="load-bg">
+                <div class="container_load">
+                    <div class="ring"></div>
+                    <div class="ring"></div>
+                    <div class="ring"></div>
+                    <span class="loading">Loading...</span>
+                </div>
+            </div>
+            
+	  {% endif %}  
+	{% endwith %}
+            
+	  
+</div>
+<div class="modal left fade" id="exampleModal" tabindex="" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+            <div class="modal-body">
+                <div class="nav flex-sm-column flex-row">
+                    <form method="post" action="/view"  class="dflex" enctype="multipart/form-data" id="viewform">
+                        <dl>
+                        <p data-file>
+                            <input type="file" name="file" autocomplete="off" required  id="tbName" accept=".gz,.nii,.dcm,.zip,.rar,.IMA" multiple="multiple"/>                          
+                        </p>
+                        </dl>
+                        <p>
+                            <button name="submit" id="submit" disabled="disabled" data-btns onclick="showLoader();">View</button>
+                        </p>
+                        
+                    </form>
+                    <form method="post" action="/run"   class="slicfrm" enctype="multipart/form-data"  autocomplete="off" id="sliceform" onsubmit="slicerun(event);">
+                        <input data-sliceno type="number" name="START" placeholder="Start Slice" required="required" id="startslice" min="0"/>
+                        <input data-sliceno type="number" name="STOP" placeholder="End Slice" required="required" id="endslice" min="1"/>
+                        <button data-btns> Run </button>
+                    </form>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</body>
+    <script>
+        function slicerun(e) {
+            let startslice =document.getElementById("startslice").value;
+            let endslice =document.getElementById("endslice").value;
+            startslice=startslice?startslice :0;
+            endslice=endslice?endslice :0;
+            if((parseInt(startslice)==0 && parseInt(endslice)>0 )){  
+                document.getElementById("sliceform").submit();
+                showLoader();
+            }
+            else if((parseInt(startslice)>0 && parseInt(endslice)>0 )){    
+                if((parseInt(endslice)>parseInt(startslice))){
+                    document.getElementById("sliceform").submit();
+                    showLoader();                  
+                } else {
+                    alert("End Slice must be greater than Start slice"); 
+                    e.preventDefault();
+                    
+                }
+            }
+         }
+function showLoader() {
+
+    let intialLoader = document.getElementsByClassName("container_load");
+    (intialLoader)  && (intialLoader[0].style.display = "flex");
+    let intialLoaderBg = document.getElementsByClassName("load-bg");
+    (intialLoaderBg)  && (intialLoaderBg[0].style.display = "block");
+    let secondLoaer = document.getElementsByClassName("d-none");
+    (secondLoaer)  && (secondLoaer[0].style.display = "flex");
+}
+        
+    </script>
+</html>
+
+
